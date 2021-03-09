@@ -5,7 +5,13 @@ $second-color: #333333;
   width: 90%;
   margin: auto;
   background-color: #FFFFFF;
+  position: absolute;
+  z-index: 1;
+  top:150px;
+  left: 5%;
+  height: 90%;
 }
+
 .App {
   text-align: center;
 }

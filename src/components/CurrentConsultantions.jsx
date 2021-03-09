@@ -6,7 +6,7 @@ const CurrentConsultations = () => {
   return (
     <>
       <Header />
-      <div>
+      <div className="current__container">
         <h1> CurrentConsultations</h1>
       </div>
     </>

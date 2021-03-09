@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { auth } from '../firebase/fb-configuration';
+import Logo from '../img/pwc-logo.jpg';
 import '../styles/Header.scss';
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
   return (
     <header className="header__container">
       <div className="logo-logout">
-        <NavLink to="/" className="logo"><img src="" alt="pwc" /></NavLink>
+        <NavLink to="/" className="logo"><img src={Logo} alt="pwc" /></NavLink>
         <button type="button" onClick={() => auth.signOut()}>sign out</button>
       </div>
       <nav>
