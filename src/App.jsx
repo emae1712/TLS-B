@@ -11,9 +11,9 @@ import ChangePassword from './components/ChangePassword';
 import AuthProvider from './Context/Auth';
 import PrivateRoute from './Context/PrivateRoute';
 import Query from './components/Query';
-import CurrentConsultations from './components/CurrentConsultantions';
 import HistoricConsultations from './components/HistoricConsultations';
 import InformationofInterest from './components/InformacionofInterest';
+import RegisterTable from './components/Table';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
             <PrivateRoute exact path="/" component={Query} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/consultasVigentes" component={CurrentConsultations} />
+            <PrivateRoute exact path="/consultasVigentes" component={RegisterTable} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/consultasHistoricas" component={HistoricConsultations} />
