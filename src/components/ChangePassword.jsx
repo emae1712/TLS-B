@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-// import { Redirect } from 'react-router';
 import { auth } from '../firebase/fb-configuration';
 
 const RecoverPassword = () => {
