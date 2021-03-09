@@ -1,3 +1,16 @@
+$main-color: #D04A02;
+$second-color: #333333;
+
+.query__container{
+  width: 90%;
+  margin: auto;
+  background-color: #FFFFFF;
+  position: absolute;
+  z-index: 1;
+  top:150px;
+  left: 5%;
+  height: 90%;
+}
 
 .App {
   text-align: center;
@@ -37,7 +50,7 @@
     transform: rotate(360deg);
   }
 }
- .btn-gray {
+.btn-gray {
   background-color:#C4C4C4;
   display: inline-block;
     font-weight: 400;
