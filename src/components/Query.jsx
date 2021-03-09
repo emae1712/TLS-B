@@ -11,10 +11,12 @@ const Query = () => {
     doc3: '',
     confidential: '',
   };
-  const [validated, setValidated] = useState(false);
   const [values, setValues] = useState(initialStateValues);
+  const [validated, setValidated] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name);
     setValues({ ...values, [name]: value });
     console.log(values);
   };
@@ -26,11 +28,17 @@ const Query = () => {
     } else {
       event.preventDefault();
     }
+    console.log('click');
     setValidated(true);
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log('click');
+    setValues(initialStateValues);
   };
   return (
     <div className="col-10 ">
-      <Form action="post" noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form action="post" noValidate validated={validated} onFormSubmit={onSubmit} onSubmit={handleSubmit}>
         <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             ID Consultas 22687
@@ -70,8 +78,8 @@ const Query = () => {
               rows={3}
               onChange={handleChange}
               type="text"
-              name="name"
-              value={values.name}
+              name="query"
+              value={values.query}
             />
           </Col>
         </Form.Group>
