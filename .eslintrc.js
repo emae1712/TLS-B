@@ -19,5 +19,9 @@ module.exports = {
     ],
     "rules": {
         'linebreak-style': 0,
+        "import/no-unresolved": [
+            2, 
+            { "caseSensitive": false }
+         ],
     }
 };
