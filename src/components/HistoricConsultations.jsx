@@ -4,10 +4,12 @@ import Header from './Header';
 const HistoricConsultations = () => {
   console.log('HistoricConsultations');
   return (
-    <div>
+    <>
       <Header />
-      <h1> HistoricConsultations</h1>
-    </div>
+      <div className="historic__container">
+        <h1> HistoricConsultations</h1>
+      </div>
+    </>
   );
 };
 export default HistoricConsultations;

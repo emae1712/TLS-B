@@ -4,7 +4,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import './App.scss';
+import './styles/App.scss';
 // import Home from './components/Home';
 import Login from './components/Login';
 import ChangePassword from './components/ChangePassword';

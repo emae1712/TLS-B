@@ -1,13 +1,16 @@
 import React from 'react';
 import Header from './Header';
+import '../styles/App.scss';
 
 const Query = () => {
   console.log('Query');
   return (
-    <div>
+    <>
       <Header />
-      <h1> Query</h1>
-    </div>
+      <div className="query__container">
+        <h1> Query</h1>
+      </div>
+    </>
   );
 };
 export default Query;
