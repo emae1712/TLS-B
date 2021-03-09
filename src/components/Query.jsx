@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
 
 const Query = () => {
-  console.log('home');
+  const initialStateValues = {
+    query: '',
+    doc1: '',
+    doc2: '',
+    doc3: '',
+    confidential: '',
+  };
+  const [validated, setValidated] = useState(false);
+  const [values, setValues] = useState(initialStateValues);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+    console.log(values);
+  };
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      event.preventDefault();
+    }
+    setValidated(true);
+  };
   return (
     <div className="col-10 ">
-      <Form>
+      <Form action="post" noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             ID Consultas 22687
@@ -34,7 +57,7 @@ const Query = () => {
             Fecha de Respuesta
           </Form.Label>
           <Col sm={6}>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" placeholder="10/03/2021" />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalPassword">
@@ -42,7 +65,14 @@ const Query = () => {
             Consulta realizada
           </Form.Label>
           <Col sm={6}>
-            <Form.Control as="textarea" rows={3} />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              onChange={handleChange}
+              type="text"
+              name="name"
+              value={values.name}
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -78,15 +108,25 @@ const Query = () => {
             ¿La consulta es confidentacial?
           </Form.Label>
           <Col sm={{ span: 3 }}>
-            <Form.Check label="Si" />
+            <Form.Check
+              type="radio"
+              label="si"
+              name="formHorizontalRadios"
+              id="formHorizontalRadios1"
+            />
           </Col>
           <Col sm={{ span: 3 }}>
-            <Form.Check label="No" />
+            <Form.Check
+              type="radio"
+              label="No"
+              name="formHorizontalRadios"
+              id="formHorizontalRadios2"
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalCheck">
           <Col sm={{ span: 10, offset: 4 }}>
-            <button type="button" className="btn btn-secondary">Enviar</button>
+            <button type="submit" className="btn btn-secondary">Enviar</button>
           </Col>
         </Form.Group>
 
