@@ -3,6 +3,8 @@
 import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import { auth } from '../firebase/fb-configuration';
 import { AuthContext } from '../Context/Auth';
 
@@ -19,7 +21,11 @@ const Login = (props) => {
         auth.signInWithEmailAndPassword(email.value, password.value);
         history.push('/');
       } catch (error) {
-        alert(error);
+        swal({
+          title: 'Error!',
+          text: 'There is no user record corresponding to this identifier. The user may have been deleted.',
+          icon: 'warning',
+        });
       }
     },
     [history],
@@ -42,6 +48,7 @@ const Login = (props) => {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <Link to="/recoverPassword">Olvidaste tu contraseña</Link>
     </div>
   );
 };
