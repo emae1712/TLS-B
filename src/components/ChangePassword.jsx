@@ -1,9 +1,8 @@
+/* eslint-disable no-alert */
 import React, { useCallback } from 'react';
 import { auth } from '../firebase/fb-configuration';
 
 const RecoverPassword = () => {
-  console.log('RecoverPassword');
-
   const handlePassword = useCallback(
     async (event) => {
       event.preventDefault();

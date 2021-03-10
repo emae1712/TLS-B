@@ -11,7 +11,6 @@ import imgLogin from '../img/login.jpg';
 
 const Login = (props) => {
   const { history } = props;
-
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();
