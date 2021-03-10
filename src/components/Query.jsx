@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
-import { storage } from '../firebase/fb-configuration';
+import { storage, db } from '../firebase/fb-configuration';
+import { AuthContext } from '../Context/Auth';
 
 const Query = () => {
-  const initialStateValues = {
-    query: '',
-    doc1: '',
-    doc2: '',
-    doc3: '',
-    confidential: '',
-  };
-  const [values, setValues] = useState(initialStateValues);
+  const [values, setValues] = useState('');
   const [validated, setValidated] = useState(false);
-
+  const [fileUrl, setFileUrl] = React.useState(null);
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser.uid);
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(name);
     setValues({ ...values, [name]: value });
     console.log(values);
   };
+  const onChange = async (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    const storageRef = storage.ref(`doc/${file.name}`);
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
   const handleSubmit = (event) => {
     const form = event.currentTarget;
+    console.log(form);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -31,22 +36,24 @@ const Query = () => {
     }
     console.log('click');
     setValidated(true);
+    db.collection('users').add({
+      user: currentUser.uid,
+      name: values,
+      doc1: fileUrl,
+    });
   };
-  const onSubmit = (event) => {
-    event.preventDefault();
-    console.log('click');
-    setValues(initialStateValues);
-  };
-  const onChange = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
-    const storageRef = storage.ref(`doc/${file.name}`);
+  //   const onSubmit = (event) => {
+  //     event.preventDefault();
+  //     console.log('submit');
+  //     setValues(initialStateValues);
+  //   };
 
-    storageRef.put(file).then((snapshot) => snapshot.ref.getDownloadURL());
-  };
+  console.log(fileUrl);
+  // storageRef.put(file).then((snapshot) => snapshot.ref.getDownloadURL());
+
   return (
     <div className="col-10 ">
-      <Form action="post" noValidate validated={validated} onFormSubmit={onSubmit} onSubmit={handleSubmit}>
+      <Form action="post" noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             ID Consultas 22687
@@ -107,7 +114,7 @@ const Query = () => {
             <Form.Control type="text" placeholder="documento" />
           </Col>
           <Col>
-            <Form.File id="exampleFormControlFile1" label="Example file input" onChange={onChange} />
+            <Form.File id="exampleFormControlFile1" label="Example file input" name="doc1" onChange={onChange} />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center">
@@ -118,7 +125,7 @@ const Query = () => {
             <Form.Check
               type="radio"
               label="si"
-              name="formHorizontalRadios"
+              name="yesRadio"
               id="formHorizontalRadios1"
             />
           </Col>
@@ -126,7 +133,7 @@ const Query = () => {
             <Form.Check
               type="radio"
               label="No"
-              name="formHorizontalRadios"
+              name="noRadio"
               id="formHorizontalRadios2"
             />
           </Col>
