@@ -1,61 +1,64 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
 } from 'react-bootstrap';
 import Header from './Header';
-// import { db } from '../firebase/fb-configuration';
+import '../styles/App.scss';
+import { db } from '../firebase/fb-configuration';
 
-const RegisterTable = () => (
-  <>
-    <Header />
-    <div>
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>ID</th>
-            {Array.from({ length: 6 }).map((_, index) => (
-              <th key={index}>Table heading</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            {Array.from({ length: 6 }).map((_, index) => (
-              <td key={index}>
-                <p>
-                  {' '}
-                  Table cell
-                  {index}
-                </p>
-
-              </td>
-
-            ))}
-            <button type="button">Ver detalle</button>
-          </tr>
-          <tr>
-            <td>2</td>
-            {Array.from({ length: 6 }).map((_, index) => (
-              <td key={index}>
-                Table cell
-                {index}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            <td>3</td>
-            {Array.from({ length: 6 }).map((_, index) => (
-              <td key={index}>
-                Table cell
-                {index}
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </Table>
-    </div>
-  </>
-);
+const RegisterTable = () => {
+  const [dataQueries, setDataQueries] = useState([]);
+  useEffect(() => {
+    db.collection('queries').onSnapshot((doc) => {
+      const array = [];
+      doc.forEach((el) => {
+        array.push({
+          id: el.id,
+          ...el.data(),
+        });
+      });
+      setDataQueries(array);
+    });
+  }, []);
+  // console.log(dataQueries);
+  const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado'];
+  return (
+    <>
+      <Header />
+      <div className="current__container">
+        <Table responsive>
+          <thead>
+            <tr>
+              <th>ID</th>
+              {titleTable.map((title, index) => (
+                <th key={index}>{title}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              dataQueries.map((querie, index) => (
+                <tr key={index}>
+                  <td>{index}</td>
+                  <td>
+                    {querie.time.toDate().toLocaleDateString('es', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true,
+                    })}
+                  </td>
+                  <td>{querie.sector}</td>
+                  <td>{querie.adviser}</td>
+                  <td>{querie.status}</td>
+                  <td><button type="button">Detalle</button></td>
+                </tr>
+              ))
+              }
+          </tbody>
+        </Table>
+      </div>
+    </>
+  );
+};
 export default RegisterTable;

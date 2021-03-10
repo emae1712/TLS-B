@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { auth } from '../firebase/fb-configuration';
 import Logo from '../img/pwc-logo.jpg';
+import Avatar from '../img/avatar.jpg';
 import '../styles/Header.scss';
 
 const Header = () => {
@@ -10,7 +11,10 @@ const Header = () => {
     <header className="header__container">
       <div className="logo-logout">
         <NavLink to="/" className="logo"><img src={Logo} alt="pwc" /></NavLink>
-        <button type="button" onClick={() => auth.signOut()}>sign out</button>
+        <div className="logout">
+          <button type="button" onClick={() => auth.signOut()}>Cerrar sesión</button>
+          <img src={Avatar} alt="avatar" />
+        </div>
       </div>
       <nav>
         <NavLink activeClassName="activeRoute" activeStyle={{ color: '#ffffff' }} exact to="/">  Registrar consulta </NavLink>

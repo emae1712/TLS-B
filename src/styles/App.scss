@@ -1,17 +1,28 @@
 $main-color: #D04A02;
 $second-color: #333333;
 
-.query__container{
+.query__container,
+.current__container,
+.information__container,
+.historic__container,
+.detail__container{
   width: 90%;
+  max-width: 90%;
   margin: auto;
   background-color: #FFFFFF;
   position: absolute;
   z-index: 1;
   top:150px;
-  left: 5%;
-  height: 90%;
+  left: 4.5%;
+  // height: 90%;
 }
 
+.register{
+  background-color: $main-color;
+}
+.imgLogin img{
+  height: 740px;
+}
 .App {
   text-align: center;
 }
