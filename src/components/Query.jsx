@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useContext } from 'react';
 import {
   Col, Form, Row,
@@ -7,53 +8,49 @@ import { AuthContext } from '../Context/Auth';
 
 const Query = () => {
   const [values, setValues] = useState('');
-  const [validated, setValidated] = useState(false);
-  const [fileUrl, setFileUrl] = React.useState(null);
+  const [files, setFiles] = useState([]);
+  // const [links, setLinks] = useState([]);
   const { currentUser } = useContext(AuthContext);
   console.log(currentUser.uid);
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(name);
     setValues({ ...values, [name]: value });
-    console.log(values);
+    console.log('values', values);
   };
-  const onChange = async (event) => {
-    const file = event.target.files[0];
-    console.log(file);
-    const storageRef = storage.ref(`doc/${file.name}`);
-    const fileRef = storageRef.child(file.name);
-    await fileRef.put(file);
-    setFileUrl(await fileRef.getDownloadURL());
-  };
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    console.log(form);
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      event.preventDefault();
+  const onFileChange = (e) => {
+    for (let i = 0; i < e.target.files.length; i += 1) {
+      const newFile = e.target.files[i];
+      newFile.id = Math.random();
+      // add an "id" property to each File object
+      setFiles((prevState) => [...prevState, newFile]);
     }
-    console.log('click');
-    setValidated(true);
+  };
+  console.log(files);
+  const handleSubmit = (event) => {
+    event.preventDefault();
     db.collection('users').add({
       user: currentUser.uid,
-      name: values,
-      doc1: fileUrl,
+      values,
+    });
+    files.forEach(async (file) => {
+      console.log(file.id);
+      const promises = [];
+      const storageRef = storage.ref(`doc/${file.name}`);
+      const fileRef = storageRef.child(file.name);
+      fileRef.put(file).then((snapshot) => {
+        const url = snapshot.ref.getDownloadURL();
+        promises.push(url);
+      });
+      console.log(promises);
     });
   };
-  //   const onSubmit = (event) => {
-  //     event.preventDefault();
-  //     console.log('submit');
-  //     setValues(initialStateValues);
-  //   };
 
-  console.log(fileUrl);
-  // storageRef.put(file).then((snapshot) => snapshot.ref.getDownloadURL());
+  console.log(files);
 
   return (
     <div className="col-10 ">
-      <Form action="post" noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form action="post" onSubmit={handleSubmit}>
         <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             ID Consultas 22687
@@ -114,7 +111,7 @@ const Query = () => {
             <Form.Control type="text" placeholder="documento" />
           </Col>
           <Col>
-            <Form.File id="exampleFormControlFile1" label="Example file input" name="doc1" onChange={onChange} />
+            <Form.File id="exampleFormControlFile1" label="Example file input" name="doc1" onChange={onFileChange} />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center">
