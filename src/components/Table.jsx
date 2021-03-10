@@ -4,13 +4,14 @@ import {
   Table,
 } from 'react-bootstrap';
 import Header from './Header';
+import '../styles/App.scss';
 
 const RegisterTable = () => {
   console.log('table');
   return (
     <>
       <Header />
-      <div>
+      <div className="current__container">
         <Table responsive>
           <thead>
             <tr>

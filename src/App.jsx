@@ -12,8 +12,9 @@ import AuthProvider from './Context/Auth';
 import PrivateRoute from './Context/PrivateRoute';
 import Query from './components/Query';
 import HistoricConsultations from './components/HistoricConsultations';
-import InformationofInterest from './components/InformacionofInterest';
+// import InformationofInterest from './components/InformacionofInterest';
 import RegisterTable from './components/Table';
+import Detail from './components/Details';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <PrivateRoute exact path="/consultasHistoricas" component={HistoricConsultations} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/informacion" component={InformationofInterest} />
+            <PrivateRoute exact path="/informacion" component={Detail} />
           </Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/recoverPassword" component={ChangePassword} />
