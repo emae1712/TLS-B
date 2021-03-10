@@ -21,9 +21,7 @@ const RegisterTable = () => {
       setDataQueries(array);
     });
   }, []);
-  console.log('table');
-  console.log('table');
-  console.log(dataQueries);
+  // console.log(dataQueries);
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado'];
   return (
     <>
@@ -43,7 +41,13 @@ const RegisterTable = () => {
               dataQueries.map((querie, index) => (
                 <tr key={index}>
                   <td>{index}</td>
-                  <td>{ new Intl.DateTimeFormat('en-US').format(querie.time)}</td>
+                  <td>
+                    {querie.time.toDate().toLocaleDateString('es', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true,
+                    })}
+                  </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>
                   <td>{querie.status}</td>

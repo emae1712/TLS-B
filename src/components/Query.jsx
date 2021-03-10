@@ -17,13 +17,10 @@ const Query = () => {
   const [files, setFiles] = useState([]);
   // const [links, setLinks] = useState([]);
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser.uid);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name);
     setValues({ ...values, [name]: value });
-    console.log('values', values);
   };
   const onFileChange = (e) => {
     for (let i = 0; i < e.target.files.length; i += 1) {
@@ -33,7 +30,7 @@ const Query = () => {
       setFiles((prevState) => [...prevState, newFile]);
     }
   };
-  console.log(files);
+  // console.log(files);
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').add({
@@ -45,13 +42,9 @@ const Query = () => {
     }).then((docRef) => {
       const promisesArr = [];
       files.forEach((file) => {
-        console.log(file.id);
         const storageRef = storage.ref(`doc/${file.name}`);
         const fileRef = storageRef.child(file.name);
-        const promise = fileRef.put(file).then((uploadFile) => {
-          console.log(uploadFile);
-          return fileRef.getDownloadURL();
-        });
+        const promise = fileRef.put(file).then(() => fileRef.getDownloadURL());
         promisesArr.push(promise);
       });
       Promise.all(promisesArr).then((arr) => db.collection('queries').doc(docRef.id).update({
@@ -60,7 +53,7 @@ const Query = () => {
       setValues(initialValue);
     });
   };
-  console.log(files);
+  // console.log(files);
 
   return (
     <>
@@ -114,7 +107,7 @@ const Query = () => {
           <Form.Group as={Row} controlId="formHorizontalEmail">
             <Form.Label column sm={4} />
             <Col>
-              <Form.File id="exampleFormControlFile1" label="Example file input" name="doc1" onChange={onFileChange} />
+              <Form.File id="exampleFormControlFile1" name="doc1" onChange={onFileChange} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center">
