@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
+import { storage } from '../firebase/fb-configuration';
 
 const Query = () => {
   const initialStateValues = {
@@ -36,6 +37,13 @@ const Query = () => {
     console.log('click');
     setValues(initialStateValues);
   };
+  const onChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    const storageRef = storage.ref(`doc/${file.name}`);
+
+    storageRef.put(file).then((snapshot) => snapshot.ref.getDownloadURL());
+  };
   return (
     <div className="col-10 ">
       <Form action="post" noValidate validated={validated} onFormSubmit={onSubmit} onSubmit={handleSubmit}>
@@ -57,15 +65,6 @@ const Query = () => {
             <Form.Label column sm={2}>
               09/03/2021
             </Form.Label>
-          </Col>
-        </Form.Group>
-
-        <Form.Group as={Row} controlId="formHorizontalPassword">
-          <Form.Label column sm={2}>
-            Fecha de Respuesta
-          </Form.Label>
-          <Col sm={6}>
-            <Form.Control type="password" placeholder="10/03/2021" />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalPassword">
@@ -108,7 +107,7 @@ const Query = () => {
             <Form.Control type="text" placeholder="documento" />
           </Col>
           <Col>
-            <button type="button" className="btn-gray">Adjuntar</button>
+            <Form.File id="exampleFormControlFile1" label="Example file input" onChange={onChange} />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center">
