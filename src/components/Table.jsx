@@ -21,9 +21,9 @@ const RegisterTable = () => {
       setDataQueries(array);
     });
   }, []);
-  console.log('table');
-  console.log('table');
-  console.log(dataQueries);
+  // console.log('table');
+  // console.log('table');
+  // console.log(dataQueries);
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado'];
   return (
     <>

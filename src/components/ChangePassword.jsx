@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
+import swal from 'sweetalert';
 import { auth } from '../firebase/fb-configuration';
 
 const RecoverPassword = () => {
-  console.log('RecoverPassword');
-
   const handlePassword = useCallback(
     async (event) => {
       event.preventDefault();
@@ -12,7 +11,11 @@ const RecoverPassword = () => {
         await
         auth.sendPasswordResetEmail(email.value);
       } catch (error) {
-        alert(error);
+        swal({
+          title: 'Error!',
+          text: 'Usuario no existente',
+          icon: 'warning',
+        });
       }
     },
     [],
