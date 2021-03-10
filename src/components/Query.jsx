@@ -9,7 +9,11 @@ import Header from './Header';
 import '../styles/App.scss';
 
 const Query = () => {
-  const [values, setValues] = useState('');
+  const initialValue = {
+    sector: '',
+    query: '',
+  };
+  const [values, setValues] = useState(initialValue);
   const [files, setFiles] = useState([]);
   // const [links, setLinks] = useState([]);
   const { currentUser } = useContext(AuthContext);
@@ -32,8 +36,11 @@ const Query = () => {
   console.log(files);
   const handleSubmit = (event) => {
     event.preventDefault();
-    db.collection('users').add({
+    db.collection('queries').add({
       user: currentUser.uid,
+      time: new Date(),
+      adviser: 'Regina Díaz',
+      status: 'pendiente',
       ...values,
     }).then((docRef) => {
       const promisesArr = [];
@@ -47,9 +54,10 @@ const Query = () => {
         });
         promisesArr.push(promise);
       });
-      Promise.all(promisesArr).then((arr) => db.collection('users').doc(docRef.id).update({
+      Promise.all(promisesArr).then((arr) => db.collection('queries').doc(docRef.id).update({
         imgs: arr,
       }));
+      setValues(initialValue);
     });
   };
   console.log(files);
@@ -83,8 +91,8 @@ const Query = () => {
                 rows={3}
                 onChange={handleChange}
                 type="text"
-                name="topic"
-                value={values.topic}
+                name="sector"
+                value={values.sector}
               />
             </Col>
           </Form.Group>
