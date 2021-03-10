@@ -1,60 +1,79 @@
-import React, { useState } from 'react';
+/* eslint-disable max-len */
+import React, { useState, useContext } from 'react';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
+import { storage, db } from '../firebase/fb-configuration';
+import { AuthContext } from '../Context/Auth';
 import Header from './Header';
 import '../styles/App.scss';
 
 const Query = () => {
-  const initialStateValues = {
+  const initialValue = {
+    sector: '',
     query: '',
-    doc1: '',
-    doc2: '',
-    doc3: '',
-    confidential: '',
   };
-  const [values, setValues] = useState(initialStateValues);
-  const [validated, setValidated] = useState(false);
+  const [values, setValues] = useState(initialValue);
+  const [files, setFiles] = useState([]);
+  // const [links, setLinks] = useState([]);
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser.uid);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(name);
     setValues({ ...values, [name]: value });
-    console.log(values);
+    console.log('values', values);
   };
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      event.preventDefault();
+  const onFileChange = (e) => {
+    for (let i = 0; i < e.target.files.length; i += 1) {
+      const newFile = e.target.files[i];
+      newFile.id = Math.random();
+      // add an "id" property to each File object
+      setFiles((prevState) => [...prevState, newFile]);
     }
-    console.log('click');
-    setValidated(true);
   };
-  const onSubmit = (event) => {
+  console.log(files);
+  const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('click');
-    setValues(initialStateValues);
+    db.collection('queries').add({
+      user: currentUser.uid,
+      time: new Date(),
+      adviser: 'Regina Díaz',
+      status: 'pendiente',
+      ...values,
+    }).then((docRef) => {
+      const promisesArr = [];
+      files.forEach((file) => {
+        console.log(file.id);
+        const storageRef = storage.ref(`doc/${file.name}`);
+        const fileRef = storageRef.child(file.name);
+        const promise = fileRef.put(file).then((uploadFile) => {
+          console.log(uploadFile);
+          return fileRef.getDownloadURL();
+        });
+        promisesArr.push(promise);
+      });
+      Promise.all(promisesArr).then((arr) => db.collection('queries').doc(docRef.id).update({
+        imgs: arr,
+      }));
+      setValues(initialValue);
+    });
   };
+  console.log(files);
+
   return (
     <>
       <Header />
-      <div className="col-10 query__container">
-        <Form action="post" noValidate validated={validated} onFormSubmit={onSubmit} onSubmit={handleSubmit}>
+      <div className="col-10  query__container">
+        <Form action="post" onSubmit={handleSubmit}>
           <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
-            <Form.Label column sm={2}>
+            <Form.Label>
               ID Consultas 22687
             </Form.Label>
-            <Col sm={6}>
-              <Form.Label column sm={6}>
-                Gerente a cargo
-              </Form.Label>
-            </Col>
           </Form.Group>
           <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               Fecha de Consulta
             </Form.Label>
             <Col sm={6}>
@@ -63,17 +82,22 @@ const Query = () => {
               </Form.Label>
             </Col>
           </Form.Group>
-
           <Form.Group as={Row} controlId="formHorizontalPassword">
-            <Form.Label column sm={2}>
-              Fecha de Respuesta
+            <Form.Label column sm={4}>
+              Tema
             </Form.Label>
             <Col sm={6}>
-              <Form.Control type="password" placeholder="10/03/2021" />
+              <Form.Control
+                rows={3}
+                onChange={handleChange}
+                type="text"
+                name="sector"
+                value={values.sector}
+              />
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formHorizontalPassword">
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               Consulta realizada
             </Form.Label>
             <Col sm={6}>
@@ -88,50 +112,28 @@ const Query = () => {
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={2} />
-            <Col sm={4}>
-              <Form.Control type="text" placeholder="documento" />
-            </Col>
+            <Form.Label column sm={4} />
             <Col>
-              <button type="button" className="btn-gray">Adjuntar</button>
-              {/* <Form.File id="exampleFormControlFile1" label="Example file input" /> */}
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={2} />
-            <Col sm={4}>
-              <Form.Control type="text" placeholder="documento" />
-            </Col>
-            <Col>
-              <button type="button" className="btn-gray">Adjuntar</button>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={2} />
-            <Col sm={4}>
-              <Form.Control type="text" placeholder="documento" />
-            </Col>
-            <Col>
-              <button type="button" className="btn-gray">Adjuntar</button>
+              <Form.File id="exampleFormControlFile1" label="Example file input" name="doc1" onChange={onFileChange} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center">
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               ¿La consulta es confidentacial?
             </Form.Label>
-            <Col sm={{ span: 3 }}>
+            <Col sm={{ span: 2 }}>
               <Form.Check
                 type="radio"
                 label="si"
-                name="formHorizontalRadios"
+                name="yesRadio"
                 id="formHorizontalRadios1"
               />
             </Col>
-            <Col sm={{ span: 3 }}>
+            <Col sm={{ span: 2 }}>
               <Form.Check
                 type="radio"
                 label="No"
-                name="formHorizontalRadios"
+                name="noRadio"
                 id="formHorizontalRadios2"
               />
             </Col>
