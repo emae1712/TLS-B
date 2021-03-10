@@ -4,6 +4,7 @@ import {
   Table,
 } from 'react-bootstrap';
 import Header from './Header';
+import '../styles/App.scss';
 import { db } from '../firebase/fb-configuration';
 
 const RegisterTable = () => {
@@ -27,7 +28,7 @@ const RegisterTable = () => {
   return (
     <>
       <Header />
-      <div>
+      <div className="current__container">
         <Table responsive>
           <thead>
             <tr>
