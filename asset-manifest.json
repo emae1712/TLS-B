@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/emae1712/TLS-B/static/css/main.1861a20c.chunk.css",
+    "main.js": "/emae1712/TLS-B/static/js/main.f1587b7d.chunk.js",
+    "main.js.map": "/emae1712/TLS-B/static/js/main.f1587b7d.chunk.js.map",
+    "runtime-main.js": "/emae1712/TLS-B/static/js/runtime-main.a3514006.js",
+    "runtime-main.js.map": "/emae1712/TLS-B/static/js/runtime-main.a3514006.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/emae1712/TLS-B/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.d0c7d0e4.chunk.js": "/emae1712/TLS-B/static/js/2.d0c7d0e4.chunk.js",
+    "static/js/2.d0c7d0e4.chunk.js.map": "/emae1712/TLS-B/static/js/2.d0c7d0e4.chunk.js.map",
+    "static/js/3.ffa2a4c0.chunk.js": "/emae1712/TLS-B/static/js/3.ffa2a4c0.chunk.js",
+    "static/js/3.ffa2a4c0.chunk.js.map": "/emae1712/TLS-B/static/js/3.ffa2a4c0.chunk.js.map",
+    "index.html": "/emae1712/TLS-B/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/emae1712/TLS-B/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.1861a20c.chunk.css.map": "/emae1712/TLS-B/static/css/main.1861a20c.chunk.css.map",
+    "static/js/2.d0c7d0e4.chunk.js.LICENSE.txt": "/emae1712/TLS-B/static/js/2.d0c7d0e4.chunk.js.LICENSE.txt",
+    "static/media/login.ea75035a.jpg": "/emae1712/TLS-B/static/media/login.ea75035a.jpg",
+    "static/media/pwc-logo.5b8373a2.jpg": "/emae1712/TLS-B/static/media/pwc-logo.5b8373a2.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a3514006.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.d0c7d0e4.chunk.js",
+    "static/css/main.1861a20c.chunk.css",
+    "static/js/main.f1587b7d.chunk.js"
+  ]
+}
