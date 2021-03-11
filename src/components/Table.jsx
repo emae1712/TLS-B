@@ -1,3 +1,4 @@
+/* eslint-disable newline-per-chained-call */
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
@@ -13,18 +14,16 @@ const RegisterTable = () => {
   const [dataQueries, setDataQueries] = useState([]);
   const [filterData, setFilterData] = useState([]);
   useEffect(() => {
-    db.collection('queries').where('status', '==', 'Atendida')
-      .orderBy('time', 'desc')
-      .onSnapshot((doc) => {
-        const array = [];
-        doc.forEach((el) => {
-          array.push({
-            id: el.id,
-            ...el.data(),
-          });
+    db.collection('queries').where('status', '==', 'pendiente').orderBy('time', 'desc').onSnapshot((doc) => {
+      const array = [];
+      doc.forEach((el) => {
+        array.push({
+          id: el.id,
+          ...el.data(),
         });
-        setDataQueries(array);
       });
+      setDataQueries(array);
+    });
   }, []);
   // console.log(dataQueries);
 

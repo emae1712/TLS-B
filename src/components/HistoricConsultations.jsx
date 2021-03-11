@@ -22,14 +22,14 @@ const HistoricConsultations = () => {
       setDataQueries(array);
     });
   }, []);
-  console.log(dataQueries);
+  // console.log(dataQueries);
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Fecha de cierre'];
   return (
     <>
       <Header />
       <div className="current__container">
         <div className="current-header">
-          <h2>Consultas vigentes</h2>
+          <h2>Consultas históricas</h2>
           <input type="search" name="buscar" placeholder="Buscar" />
         </div>
         <Table responsive>
