@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useCallback } from 'react';
 import swal from 'sweetalert';
 import { auth } from '../firebase/fb-configuration';

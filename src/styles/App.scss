@@ -1,7 +1,7 @@
 $main-color: #D04A02;
 $second-color: #333333;
 
-.query__container,
+
 .current__container,
 .information__container,
 .historic__container,
@@ -15,6 +15,18 @@ $second-color: #333333;
   top:150px;
   left: 4.5%;
   // height: 90%;
+}
+.query__container{
+  width: 90%;
+  max-width: 90%;
+  margin: auto;
+  background-color: #FFFFFF;
+  position: absolute;
+  z-index: 1;
+  top:150px;
+  left: 4.5%;
+  -webkit-box-shadow: 2px 8px 13px -3px rgba(0, 0, 0, 0.59);
+	box-shadow: 2px 8px 13px -3px rgba(0, 0, 0, 0.59);
 }
 
 .register{
