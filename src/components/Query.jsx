@@ -22,6 +22,22 @@ const Query = () => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
+  // const nameValidation = (fieldName, fieldValue) => {
+  //   if (fieldValue.trim() === '') {
+  //     return `${fieldName} is required`;
+  //   }
+  //   if (/[^a-zA-Z -]/.test(fieldValue)) {
+  //     return 'Invalid characters';
+  //   }
+  //   if (fieldValue.trim().length < 3) {
+  //     return `${fieldName} needs to be at least three characters`;
+  //   }
+  //   return null;
+  // };
+  // const validate = {
+  //   sector: (name) => nameValidation('sector', name),
+  //   query: (name) => nameValidation('query', name),
+  // };
   const onFileChange = (e) => {
     for (let i = 0; i < e.target.files.length; i += 1) {
       const newFile = e.target.files[i];
@@ -50,6 +66,7 @@ const Query = () => {
         imgs: arr,
       }));
       setValues(initialValue);
+      setFiles([]);
       swal({
         title: 'Su consulta fue ingresada con éxito!',
         text: 'Le hemos  asignado un Gerente,  estamos atendiendo su consulta. Puede visualizar el estado de su consulta en Consultas Vigentes',

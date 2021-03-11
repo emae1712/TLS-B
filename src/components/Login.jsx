@@ -40,9 +40,9 @@ const Login = (props) => {
           <img src={imgLogin} alt="" />
         </div>
         <div className="col-lg-6 register">
-          <h2 className="fw-bold text-center py-5 text-light">Bienvenido al Portal de Consultas PwC</h2>
-          <p className="text-light">LogIn</p>
-          <form onSubmit={handleLogin}>
+          <h2 className="fw-bold text-center pb-5 text-light">Bienvenido al Portal de Consultas PwC</h2>
+          <p className="text-light text-center">LogIn</p>
+          <form onSubmit={handleLogin} className="box-form">
             <div className="mb-4">
               <label htmlFor="email" className="form-label text-light">
                 Email
@@ -55,7 +55,7 @@ const Login = (props) => {
                 <input name="password" className="form-control" type="password" placeholder="password" />
               </label>
             </div>
-            <div className="d-grid">
+            <div className="d-grid text-center">
               <button type="submit" className="btn btn-primary">Log In</button>
             </div>
             <div className="my-3">
