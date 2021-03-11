@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
+import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import {
   Table,
@@ -55,11 +56,9 @@ const RegisterTable = () => {
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
-                    {querie.time.toDate().toLocaleDateString('es', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      hour12: true,
-                    })}
+                    <Moment format="DD/MM/YYYY">
+                      {querie.time}
+                    </Moment>
                   </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>

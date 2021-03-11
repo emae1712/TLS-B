@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useContext } from 'react';
 import swal from 'sweetalert';
+import Moment from 'react-moment';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
@@ -91,7 +92,9 @@ const Query = () => {
               </Form.Label>
               <Col sm={6}>
                 <Form.Label column sm={2}>
-                  11/03/2021
+                  <Moment format="DD/MM/YYYY">
+                    {new Date()}
+                  </Moment>
                 </Form.Label>
               </Col>
             </Form.Group>
