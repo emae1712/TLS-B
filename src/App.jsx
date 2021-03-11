@@ -31,7 +31,7 @@ function App() {
             <PrivateRoute exact path="/consultasHistoricas" component={HistoricConsultations} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/detail" component={Detail} />
+            <PrivateRoute exact path="/detail/:id" component={Detail} />
           </Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/recoverPassword" component={ChangePassword} />
