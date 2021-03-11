@@ -23,6 +23,7 @@ const RegisterTable = () => {
         });
       });
       setDataQueries(array);
+      setFilterData(array);
     });
   }, []);
 
