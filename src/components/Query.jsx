@@ -2,6 +2,7 @@
 import React, { useState, useContext } from 'react';
 import swal from 'sweetalert';
 import Moment from 'react-moment';
+import moment from 'moment';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
@@ -23,22 +24,6 @@ const Query = () => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-  // const nameValidation = (fieldName, fieldValue) => {
-  //   if (fieldValue.trim() === '') {
-  //     return `${fieldName} is required`;
-  //   }
-  //   if (/[^a-zA-Z -]/.test(fieldValue)) {
-  //     return 'Invalid characters';
-  //   }
-  //   if (fieldValue.trim().length < 3) {
-  //     return `${fieldName} needs to be at least three characters`;
-  //   }
-  //   return null;
-  // };
-  // const validate = {
-  //   sector: (name) => nameValidation('sector', name),
-  //   query: (name) => nameValidation('query', name),
-  // };
   const onFileChange = (e) => {
     for (let i = 0; i < e.target.files.length; i += 1) {
       const newFile = e.target.files[i];
@@ -47,11 +32,12 @@ const Query = () => {
       setFiles((prevState) => [...prevState, newFile]);
     }
   };
+  const today = moment().format('DD MM YYYY hh:mm:ss');
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').add({
       user: currentUser.uid,
-      time: new Date(),
+      time: today,
       adviser: 'Regina Díaz',
       status: 'pendiente',
       ...values,
