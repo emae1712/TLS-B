@@ -15,12 +15,9 @@ const Answer = (props) => {
       querySnapshot.forEach((doc) => {
         comment.push({ id: doc.id, ...doc.data() });
       });
-      console.log(comment);
-      console.log('useeffect');
       setAnswer(comment);
     });
   }, []);
-  console.log(answer);
   return (
     <>
       {answer.map((childQuery) => (

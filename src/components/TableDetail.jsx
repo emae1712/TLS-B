@@ -9,7 +9,6 @@ import '../styles/App.scss';
 
 const TableDetail = (props) => {
   const { querieId } = props;
-  console.log(querieId);
   const initialValue = {
     answer: '',
   };

@@ -28,9 +28,6 @@ const Detail = () => {
     db.collection('queries').doc(id).get()
       .then((doc) => setClient(doc.data()));
   }, [id]);
-  console.log(client.imgs);
-  console.log(id);
-
   return (
     <>
       <Header />
