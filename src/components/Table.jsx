@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,7 @@ import { db } from '../firebase/fb-configuration';
 
 const RegisterTable = () => {
   const [dataQueries, setDataQueries] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   useEffect(() => {
     db.collection('queries').where('status', '==', 'Atendida')
       .orderBy('time', 'desc')
@@ -25,6 +27,12 @@ const RegisterTable = () => {
       });
   }, []);
   // console.log(dataQueries);
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    const arrQueries = dataQueries.filter((el) => (el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false));
+    setFilterData(arrQueries);
+  };
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado'];
   return (
     <>
@@ -32,7 +40,7 @@ const RegisterTable = () => {
       <div className="current__container">
         <div className="current-header">
           <h2>Consultas vigentes</h2>
-          <input type="search" name="buscar" placeholder="Buscar" />
+          <input type="search" name="buscar" placeholder="Buscar" onChange={handleChange} />
         </div>
         <Table responsive>
           <thead>
@@ -45,7 +53,7 @@ const RegisterTable = () => {
           </thead>
           <tbody>
             {
-              dataQueries.map((querie, index) => (
+              filterData.map((querie, index) => (
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
