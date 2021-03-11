@@ -6,7 +6,7 @@ const InformationofInterest = () => (
   <>
     <Header />
     <div className="information__container">
-      <h1> InformationofInterest</h1>
+      <h1> Information of Interest</h1>
     </div>
   </>
 );
