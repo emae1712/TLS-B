@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { db } from '../firebase/fb-configuration';
-import Avatar from '../img/avatar.jpg';
+import Avatar2 from '../img/avatar_2.jpg';
 import '../styles/App.scss';
 import '../styles/Details.scss';
 
@@ -24,7 +24,7 @@ const Answer = (props) => {
         <div className="consult-card">
           <div className="consult-container">
             <div className="consult-detail">
-              <img className="avatar" src={Avatar} alt="avatar" />
+              <img className="avatar" src={Avatar2} alt="avatar" />
               <div className="user-consult">
                 <div className="name-consult">
                   <p>Maria Fernanda Cevedo</p>
@@ -38,36 +38,39 @@ const Answer = (props) => {
               </div>
             </div>
           </div>
-          <div className="attachment">
-            <h2>Archivos adjuntos</h2>
+          {childQuery.imgs.length > 0
+            ? (
+              <div className="attachment">
+                <h2>Archivos adjuntos</h2>
 
-            <table className="table">
-              <thead>
-                <tr className="border-table">
-                  <th scope="col">Nombre del archivo</th>
-                  <th scope="col">Archivo</th>
-                </tr>
-              </thead>
-              <tbody>
-                { childQuery.imgs && childQuery.imgs.map((img, i) => (
-                  <tr index={i}>
-                    <td>
-                      Archivo
-                      {i + 1}
-                    </td>
-                    <td>
-                      {' '}
-                      <BsFileEarmarkArrowDown fontSize="1.5rem" />
-                      {' '}
-                      <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+                <table className="table">
+                  <thead>
+                    <tr className="border-table">
+                      <th scope="col">Nombre del archivo</th>
+                      <th scope="col">Archivo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { childQuery.imgs && childQuery.imgs.map((img, i) => (
+                      <tr index={i}>
+                        <td>
+                          Archivo
+                          {i + 1}
+                        </td>
+                        <td>
+                          {' '}
+                          <BsFileEarmarkArrowDown fontSize="1.5rem" />
+                          {' '}
+                          <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
 
-            </table>
+                </table>
 
-          </div>
+              </div>
+            ) : ''}
         </div>
       ))}
     </>
