@@ -24,7 +24,6 @@ const RegisterTable = () => {
       setDataQueries(array);
     });
   }, []);
-  // console.log(dataQueries);
 
   const handleChange = (event) => {
     const { value } = event.target;
