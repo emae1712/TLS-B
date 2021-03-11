@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useContext } from 'react';
+import swal from 'sweetalert';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
@@ -49,6 +50,11 @@ const Query = () => {
         imgs: arr,
       }));
       setValues(initialValue);
+      swal({
+        title: 'Su consulta fue ingresada con éxito!',
+        text: 'Le hemos  asignado un Gerente,  estamos atendiendo su consulta. Puede visualizar el estado de su consulta en Consultas Vigentes',
+        icon: 'success',
+      });
     });
   };
 

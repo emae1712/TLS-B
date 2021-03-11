@@ -11,16 +11,18 @@ import { db } from '../firebase/fb-configuration';
 const RegisterTable = () => {
   const [dataQueries, setDataQueries] = useState([]);
   useEffect(() => {
-    db.collection('queries').onSnapshot((doc) => {
-      const array = [];
-      doc.forEach((el) => {
-        array.push({
-          id: el.id,
-          ...el.data(),
+    db.collection('queries').where('status', '==', 'Atendida')
+      .orderBy('time', 'desc')
+      .onSnapshot((doc) => {
+        const array = [];
+        doc.forEach((el) => {
+          array.push({
+            id: el.id,
+            ...el.data(),
+          });
         });
+        setDataQueries(array);
       });
-      setDataQueries(array);
-    });
   }, []);
   // console.log(dataQueries);
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado'];
@@ -56,7 +58,14 @@ const RegisterTable = () => {
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>
                   <td>{querie.status}</td>
-                  <td><Link to="/detail">Detalle</Link></td>
+                  <td>
+                    <Link to={
+                     `/detail/${querie.id}`
+}
+                    >
+                      Detalle
+                    </Link>
+                  </td>
                 </tr>
               ))
               }
