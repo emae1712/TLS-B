@@ -31,6 +31,9 @@ $second-color: #333333;
 
 .register{
   background-color: $main-color;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .current__container{
   padding: 2rem;
@@ -55,6 +58,7 @@ $second-color: #333333;
 }
 .imgLogin img{
   height: 740px;
+  width:520px;
 }
 .App {
   text-align: center;
@@ -64,7 +68,9 @@ $second-color: #333333;
   height: 40vmin;
   pointer-events: none;
 }
-
+.box-form{
+  margin: 10px auto;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
