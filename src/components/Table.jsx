@@ -2,7 +2,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
-import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import {
   Table,
@@ -15,7 +14,7 @@ const RegisterTable = () => {
   const [dataQueries, setDataQueries] = useState([]);
   const [filterData, setFilterData] = useState([]);
   useEffect(() => {
-    db.collection('queries').where('status', '==', 'pendiente').orderBy('time', 'desc').onSnapshot((doc) => {
+    db.collection('queries').where('status', '!=', 'Resuelta').orderBy('status').orderBy('time', 'desc').onSnapshot((doc) => {
       const array = [];
       doc.forEach((el) => {
         array.push({
@@ -57,13 +56,15 @@ const RegisterTable = () => {
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
-                    <Moment format="DD/MM/YYYY">
-                      {querie.time}
-                    </Moment>
+                    {querie.time.toDate().toLocaleDateString('es', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true,
+                    })}
                   </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>
-                  <td>{querie.status}</td>
+                  <td className={querie.status === 'Atendida' ? 'atendida' : 'pendiente'}>{querie.status}</td>
                   <td>
                     <Link to={
                      `/detail/${querie.id}`

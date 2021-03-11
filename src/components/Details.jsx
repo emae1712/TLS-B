@@ -8,7 +8,7 @@ import {
   Col, Form, Row,
 } from 'react-bootstrap';
 // import PropTypes from 'prop-types';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { AiOutlineArrowLeft, AiOutlineClockCircle } from 'react-icons/ai';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { AuthContext } from '../Context/Auth';
 import { storage, db } from '../firebase/fb-configuration';
@@ -35,9 +35,9 @@ const Detail = () => {
         <div className="detail-card">
           {
           client.status === 'Resuelta'
-            ? <Link to="/consultasHistoricas"><AiOutlineArrowLeft /></Link>
+            ? <Link to="/consultasHistoricas" className="return"><AiOutlineArrowLeft /></Link>
 
-            : <Link to="/consultasVigentes"><AiOutlineArrowLeft /></Link>
+            : <Link to="/consultasVigentes" className="return"><AiOutlineArrowLeft /></Link>
           }
           <div className="detail">
             <h2>Detalle de consulta</h2>
@@ -55,17 +55,21 @@ const Detail = () => {
                 Tema:
                 { client.sector }
               </p>
-              <p>Sublos Tributario</p>
+              <p>Sublos: Tributario</p>
               <p>Socio a cargo: Cristina Yang Aval</p>
               <p>Gerente a cargo: Maria Alejendra Rivera Lopez</p>
             </div>
           </div>
           <div className="detail-state">
-            <button type="button">Descargar consulta</button>
+            <a href="#/">Descargar consulta</a>
             <table>
               <tr>
-                <th>Firstname</th>
-                <th>{ client.status }</th>
+                <th>
+                  {' '}
+                  <AiOutlineClockCircle />
+                  {' '}
+                </th>
+                <th className={client.status === 'Atendida' ? 'atendida' : 'pendiente'}>{ client.status }</th>
               </tr>
               <tr>
                 <td>Total</td>

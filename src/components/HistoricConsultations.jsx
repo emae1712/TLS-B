@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,7 @@ import { db } from '../firebase/fb-configuration';
 
 const HistoricConsultations = () => {
   const [dataQueries, setDataQueries] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   useEffect(() => {
     db.collection('queries').where('status', '==', 'Resuelta').orderBy('time', 'desc').onSnapshot((doc) => {
       const array = [];
@@ -20,9 +22,15 @@ const HistoricConsultations = () => {
         });
       });
       setDataQueries(array);
+      setFilterData(array);
     });
   }, []);
-  // console.log(dataQueries);
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    const arrQueries = dataQueries.filter((el) => (el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false));
+    setFilterData(arrQueries);
+  };
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Fecha de cierre'];
   return (
     <>
@@ -30,7 +38,7 @@ const HistoricConsultations = () => {
       <div className="current__container">
         <div className="current-header">
           <h2>Consultas históricas</h2>
-          <input type="search" name="buscar" placeholder="Buscar" />
+          <input type="search" name="buscar" placeholder="Buscar" onChange={handleChange} />
         </div>
         <Table responsive>
           <thead>
@@ -43,7 +51,7 @@ const HistoricConsultations = () => {
           </thead>
           <tbody>
             {
-              dataQueries.map((querie, index) => (
+              filterData.map((querie, index) => (
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
