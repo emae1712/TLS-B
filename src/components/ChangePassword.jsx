@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useCallback } from 'react';
+import swal from 'sweetalert';
 import { auth } from '../firebase/fb-configuration';
 
 const RecoverPassword = () => {
@@ -10,8 +11,17 @@ const RecoverPassword = () => {
       try {
         await
         auth.sendPasswordResetEmail(email.value);
+        swal({
+          title: 'Realizado',
+          text: 'Revise su correo',
+          icon: 'success',
+        });
       } catch (error) {
-        alert(error);
+        swal({
+          title: 'Error!',
+          text: 'Usuario no existente',
+          icon: 'warning',
+        });
       }
     },
     [],

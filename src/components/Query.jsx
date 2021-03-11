@@ -29,7 +29,6 @@ const Query = () => {
       setFiles((prevState) => [...prevState, newFile]);
     }
   };
-  // console.log(files);
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').add({
@@ -52,7 +51,6 @@ const Query = () => {
       setValues(initialValue);
     });
   };
-  // console.log(files);
 
   return (
     <>

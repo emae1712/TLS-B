@@ -32,6 +32,27 @@ $second-color: #333333;
 .register{
   background-color: $main-color;
 }
+.current__container{
+  padding: 2rem;
+  .current-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    input{
+      border-color: transparent;
+      background-color: rgba(232, 232, 232, 1);
+      outline-color: none;
+      outline: none;
+    }
+    
+    
+  }
+  table{
+    .border-table{
+      border-bottom: $main-color 2.5px solid;
+  }
+  }
+}
 .imgLogin img{
   height: 740px;
 }
