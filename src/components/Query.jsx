@@ -66,6 +66,7 @@ const Query = () => {
         imgs: arr,
       }));
       setValues(initialValue);
+      setFiles([]);
       swal({
         title: 'Su consulta fue ingresada con éxito!',
         text: 'Le hemos  asignado un Gerente,  estamos atendiendo su consulta. Puede visualizar el estado de su consulta en Consultas Vigentes',
