@@ -10,6 +10,11 @@ const RecoverPassword = () => {
       try {
         await
         auth.sendPasswordResetEmail(email.value);
+        swal({
+          title: 'Realizado',
+          text: 'Revise su correo',
+          icon: 'success',
+        });
       } catch (error) {
         swal({
           title: 'Error!',

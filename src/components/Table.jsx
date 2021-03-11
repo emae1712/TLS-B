@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Table,
 } from 'react-bootstrap';
@@ -29,9 +30,13 @@ const RegisterTable = () => {
     <>
       <Header />
       <div className="current__container">
+        <div className="current-header">
+          <h2>Consultas vigentes</h2>
+          <input type="search" name="buscar" placeholder="Buscar" />
+        </div>
         <Table responsive>
           <thead>
-            <tr>
+            <tr className="border-table">
               <th>ID</th>
               {titleTable.map((title, index) => (
                 <th key={index}>{title}</th>
@@ -47,7 +52,7 @@ const RegisterTable = () => {
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>
                   <td>{querie.status}</td>
-                  <td><button type="button">Detalle</button></td>
+                  <td><Link to="/detail">Detalle</Link></td>
                 </tr>
               ))
               }

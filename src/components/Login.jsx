@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { auth } from '../firebase/fb-configuration';
 import { AuthContext } from '../Context/Auth';
-import imgLogin from '../img/login.jpg';
+import imgLogin from '../img/login detalle.jpg';
 
 const Login = (props) => {
   const { history } = props;
@@ -37,10 +37,10 @@ const Login = (props) => {
   return (
     <div className="container">
       <div className="row g-0">
-        <div className="col-lg-5 imgLogin">
+        <div className="col-lg-6 imgLogin">
           <img src={imgLogin} alt="" />
         </div>
-        <div className="col-lg-7 register">
+        <div className="col-lg-6 register">
           <h2 className="fw-bold text-center py-5 text-light">Bienvenido al Portal de Consultas PwC</h2>
           <p className="text-light">LogIn</p>
           <form onSubmit={handleLogin}>

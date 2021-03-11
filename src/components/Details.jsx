@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import Avatar from '../img/avatar.jpg';
@@ -12,7 +13,7 @@ const Detail = () => (
     <Header />
     <section className="detail__container">
       <div className="detail-card">
-        <AiOutlineArrowLeft />
+        <Link to="/consultasVigentes"><AiOutlineArrowLeft /></Link>
         <div className="detail">
           <h2>Detalle de consulta</h2>
           <p>ID 132</p>
