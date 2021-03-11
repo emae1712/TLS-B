@@ -25,6 +25,43 @@ a {
             display: flex;
     flex-direction: column;
     justify-content: space-between;
+    table{
+        margin:0 auto;
+        text-align: center;
+        th{
+            font-size: 20px;
+            color: rgba(154, 154, 154, 1);
+            font-weight: bold;
+        }
+    }
+    a{
+        white-space: pre;
+        background-color:rgba(51, 51, 51, 1);
+        border-radius: 4px;
+        padding: 10px;
+        text-decoration: none;
+        color: #ffff;
+        text-transform: uppercase;
+        height: 2rem;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+        }
+        .return{
+            background-color: $main-color;
+    border-radius: 50%;
+    height: 50px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    svg{
+        color: #ffff;
+        font-size: 1.5rem;
+        
+    }
         }
     }
     .consult-detail{

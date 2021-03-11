@@ -14,7 +14,7 @@ const RegisterTable = () => {
   const [dataQueries, setDataQueries] = useState([]);
   const [filterData, setFilterData] = useState([]);
   useEffect(() => {
-    db.collection('queries').where('status', '==', 'pendiente').orderBy('time', 'desc').onSnapshot((doc) => {
+    db.collection('queries').where('status', '!=', 'Resuelta').orderBy('status').orderBy('time', 'desc').onSnapshot((doc) => {
       const array = [];
       doc.forEach((el) => {
         array.push({
@@ -64,7 +64,7 @@ const RegisterTable = () => {
                   </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>
-                  <td>{querie.status}</td>
+                  <td className={querie.status === 'Atendida' ? 'atendida' : 'pendiente'}>{querie.status}</td>
                   <td>
                     <Link to={
                      `/detail/${querie.id}`

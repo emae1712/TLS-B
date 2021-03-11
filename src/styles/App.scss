@@ -20,13 +20,33 @@ $second-color: #333333;
   width: 90%;
   max-width: 90%;
   margin: auto;
-  background-color: #FFFFFF;
+  background-color: transparent;
   position: absolute;
   z-index: 1;
   top:150px;
   left: 4.5%;
-  -webkit-box-shadow: 2px 8px 13px -3px rgba(0, 0, 0, 0.59);
-	box-shadow: 2px 8px 13px -3px rgba(0, 0, 0, 0.59);
+  // -webkit-box-shadow: 2px 8px 13px -3px rgba(0, 0, 0, 0.59);
+	// box-shadow: 2px 8px 13px -3px rgba(0, 0, 0, 0.59);
+  height: 50px;
+}
+.group-contain > div{
+  width: 100  0px;
+  background-color: #ffff;
+    margin-bottom: 1rem;
+    padding: 2rem;
+}
+.btn-login{
+  white-space: pre;
+  background-color:rgba(51, 51, 51, 1);
+  border-radius: 4px;
+  padding: 10px;
+  text-decoration: none;
+  color: #ffff;
+  text-transform: uppercase;
+  height: 2rem;
+  display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .register{
@@ -60,6 +80,78 @@ $second-color: #333333;
   height: 740px;
   width:550px;
 }
+
+.recoverPassword{
+  display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    .return-login{
+      background-color: #ffffff;
+      border: $main-color;
+    border-radius: 50%;
+    height: 50px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    svg{
+    color: #ffff;
+    font-size: 1.5rem;
+    }
+    
+    }
+}
+.header-recover{
+  display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 700px;
+    margin: 20px;
+}
+.div-input{
+  max-width: 100%;
+  background-color: #FFFFFF;
+  height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  position: relative;
+  font-size: 16px;
+  width: 500px;
+  svg{
+    justify-content: center;
+    text-align: center;
+    height: 55px;
+    color: #acacac;
+    font-size: 20px;
+  }
+  input{
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-size: 1.1rem;
+    color: #333;
+    border-radius: 5px;
+  }
+}
+.recuperar{
+  color: #ffffff;
+  margin:auto;
+    height: 55px;
+    background-color: $main-color;font-weight: 600;
+    justify-content: center;
+    width: 60%;
+    border: none;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    margin: 20px;
+}
+
 .App {
   text-align: center;
 }
@@ -87,7 +179,15 @@ $second-color: #333333;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.atendida{
+  color:#308F21 !important;
+  font-weight: bold !important;
+}
+.pendiente{
+  color: #9A9A9A !important;
+  font-weight: bold !important;
+  text-transform: capitalize !important;
+}
 .App-link {
   color: #61dafb;
 }
