@@ -19,7 +19,6 @@ const TableDetail = (props) => {
   const { currentUser } = useContext(AuthContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(values);
     setValues({ ...values, [name]: value });
   };
   const onFileChange = (e) => {
@@ -46,9 +45,10 @@ const TableDetail = (props) => {
           const promise = fileRef.put(file).then(() => fileRef.getDownloadURL());
           promisesArr.push(promise);
         });
-        Promise.all(promisesArr).then((arr) => db.collection('queries').doc(docRef.id).update({
-          imgs: arr,
-        }));
+        Promise.all(promisesArr).then((arr) => db.collection('queries').doc(querieId).collection('answer').doc(docRef.id)
+          .update({
+            imgs: arr,
+          }));
         setValues(initialValue);
         setFiles([]);
       });
