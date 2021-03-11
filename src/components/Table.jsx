@@ -56,11 +56,7 @@ const RegisterTable = () => {
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
-                    {querie.time.toDate().toLocaleDateString('es', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      hour12: true,
-                    })}
+                    {querie.time}
                   </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
@@ -28,11 +29,12 @@ const TableDetail = (props) => {
       setFiles((prevState) => [...prevState, newFile]);
     }
   };
+  const today = moment().format('DD MM YYYY hh:mm:ss');
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').doc(querieId).collection('answer').add({
       user: currentUser.uid,
-      time: new Date(),
+      time: today,
       status: 'pendiente',
       ...values,
     })

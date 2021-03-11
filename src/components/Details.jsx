@@ -45,11 +45,7 @@ const Detail = () => {
             <div>
               <p>
                 Fecha:
-                {client.time && new Date(client.time.seconds * 1000).toDateString('es', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  hour12: true,
-                })}
+                {client.time}
               </p>
               <p>
                 Tema:
@@ -77,7 +73,54 @@ const Detail = () => {
               </tr>
             </table>
           </div>
+        </div>
+        <div className="consult-card">
+          <div className="consult-container">
+            <div className="consult-detail">
+              <img className="avatar" src={Avatar} alt="avatar" />
+              <div className="user-consult">
+                <div className="name-consult">
+                  <p>Maria Fernanda Cevedo</p>
+                  <p>
+                    {client.time}
+                  </p>
+                </div>
+                <p className="consult-text">
+                  {client.query}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="attachment">
+            <h2>Archivos adjuntos</h2>
 
+            <table className="table">
+              <thead>
+                <tr className="border-table">
+                  <th scope="col">Nombre del archivo</th>
+                  <th scope="col">Archivo</th>
+                </tr>
+              </thead>
+              <tbody>
+                { client.imgs && client.imgs.map((img, i) => (
+                  <tr index={i}>
+                    <td>
+                      Archivo
+                      {i + 1}
+                    </td>
+                    <td>
+                      {' '}
+                      <BsFileEarmarkArrowDown fontSize="1.5rem" />
+                      {' '}
+                      <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+
+            </table>
+
+          </div>
         </div>
         <Answer querieId={id} />
         <div className="add-consult">

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import Moment from 'react-moment';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { db } from '../firebase/fb-configuration';
 import Avatar from '../img/avatar.jpg';
@@ -29,7 +28,9 @@ const Answer = (props) => {
               <div className="user-consult">
                 <div className="name-consult">
                   <p>Maria Fernanda Cevedo</p>
-                  <Moment format="DD/MM/YYYY">{childQuery.time}</Moment>
+                  <p>
+                    {answer.time}
+                  </p>
                 </div>
                 <p className="consult-text">
                   {childQuery.answer}
