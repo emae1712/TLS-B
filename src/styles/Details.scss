@@ -41,7 +41,6 @@ a {
         padding: 10px;
         text-decoration: none;
         color: #ffff;
-        text-transform: uppercase;
         height: 2rem;
         display: flex;
     justify-content: center;
@@ -116,4 +115,9 @@ a {
 .box{
     display: grid;
     grid-template-columns: 90% 10%;
+}
+.table-box{
+    padding-top:6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

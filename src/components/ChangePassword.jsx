@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { auth } from '../firebase/fb-configuration';
 import '../styles/App.scss';
 
@@ -15,16 +15,18 @@ const RecoverPassword = () => {
       try {
         await
         auth.sendPasswordResetEmail(email.value);
-        swal({
+        Swal.fire({
           title: 'Realizado',
           text: 'Revise su correo',
           icon: 'success',
+          confirmButtonColor: '#D04A02',
         });
       } catch (error) {
-        swal({
+        Swal.fire({
           title: 'Error!',
           text: 'No hay ningún registro de usuario que corresponda a este correo electrónico.',
           icon: 'warning',
+          confirmButtonColor: '#D04A02',
         });
       }
     },

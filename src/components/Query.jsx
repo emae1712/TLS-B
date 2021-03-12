@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import React, { useState, useContext } from 'react';
-import swal from 'sweetalert';
 import Moment from 'react-moment';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 import {
   Col, Form, Row,
 } from 'react-bootstrap';
@@ -56,10 +56,15 @@ const Query = () => {
       }));
       setValues(initialValue);
       setFiles([]);
-      swal({
-        title: 'Su consulta fue ingresada con éxito!',
-        text: 'Le hemos  asignado un Gerente,  estamos atendiendo su consulta. Puede visualizar el estado de su consulta en Consultas Vigentes',
+      Swal.fire({
+        title: '<strong>Su consulta fue ingresada con éxito!</strong>',
         icon: 'success',
+        iconColor: '#D04A02',
+        html:
+        'Le hemos asignado un Gerente, estamos atendiendo su consulta. <br><br>'
+        + 'Puede visualizar el estado de su consulta en <b> Consultas Vigentes </b>',
+        showCloseButton: true,
+        confirmButtonColor: '#D04A02',
       });
     });
   };
@@ -120,8 +125,13 @@ const Query = () => {
             </Form.Group>
           </div>
           <div>
+            <Form.Group as={Row} controlId="formHorizontalEmail" className="m-2 d-flex justify-start">
+              <Form.Label className="h3">
+                Adjuntar archivos
+              </Form.Label>
+            </Form.Group>
             <Form.Group as={Row} controlId="formHorizontalEmail" className="mx-auto col-10 ">
-              <Form.Label column sm={4} />
+
               <Col>
                 <Form.File id="exampleFormControlFile1" name="doc1" onChange={onFileChange} />
               </Col>
@@ -148,9 +158,9 @@ const Query = () => {
               </Col>
             </Form.Group>
           </div>
-          <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center mx-auto col-10  ">
-            <Col sm={{ span: 6, offset: 5 }}>
-              <button type="submit" className="btn btn-secondary">Enviar</button>
+          <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center mx-auto  ">
+            <Col>
+              <button type="submit" className="btn btn-sent">Enviar</button>
             </Col>
           </Form.Group>
 

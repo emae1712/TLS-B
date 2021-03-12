@@ -180,13 +180,31 @@ align-items: center;
   color: white;
 }
 .atendida{
-  color:#308F21 !important;
+  color:rgba(226, 51, 29, 1) !important;
   font-weight: bold !important;
 }
 .pendiente{
   color: #9A9A9A !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
+}
+.view{
+  color: rgba(51, 51, 51, 1);
+    margin-left: 2rem;
+    font-size: 1.2rem;
+}
+.btn-sent{
+  margin: 5px 45%;
+    background-color: #333333;
+    border-radius: 4px;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffff;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
 }
 .App-link {
   color: #61dafb;

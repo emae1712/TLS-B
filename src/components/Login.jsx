@@ -4,7 +4,7 @@ import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { auth } from '../firebase/fb-configuration';
 import { AuthContext } from '../Context/Auth';
 import imgLogin from '../img/login detalle.jpg';
@@ -20,10 +20,11 @@ const Login = (props) => {
         auth.signInWithEmailAndPassword(email.value, password.value);
         history.push('/');
       } catch (error) {
-        swal({
+        Swal.fire({
           title: 'Error!',
-          text: 'There is no user record corresponding to this identifier. The user may have been deleted.',
+          text: 'No hay ningún registro de usuario que corresponda a este correo electrónico.',
           icon: 'warning',
+          confirmButtonColor: '#D04A02',
         });
       }
     },
