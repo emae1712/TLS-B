@@ -122,7 +122,7 @@ const Detail = () => {
           <div className="consult-card">
             <div className="consult-container">
               <div className="consult-detail">
-                <img className="avatar" src={Avatar} alt="avatar" />
+                <img className="avatar" src="https://user-images.githubusercontent.com/68167686/110983245-83a4fd00-8337-11eb-82a7-f3ec14ad86ae.jpeg" alt="avatar" />
                 <div className="user-consult">
                   <div className="name-consult">
                     <p>{client.userName}</p>
@@ -170,7 +170,7 @@ const Detail = () => {
                 </div>
               )}
           </div>
-          <Answer querieId={id} />
+          <Answer querieId={id} client={client} />
           <div className="add-consult">
             <TableDetail querieId={id} arrData={client} />
           </div>
