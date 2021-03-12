@@ -194,7 +194,7 @@ align-items: center;
     font-size: 1.2rem;
 }
 .btn-sent{
-  margin: 5px 45%;
+  margin: 0 auto;
     background-color: #333333;
     border-radius: 4px;
     padding: 10px;
@@ -205,6 +205,16 @@ align-items: center;
     justify-content: center;
     align-items: center;
     width: 150px;
+}
+.margin-tema{
+  margin-right: 55px !important;
+}
+.color-input{
+  background-color: rgba(241, 241, 241, 1);
+  &:not(.disable):hover{
+    box-shadow:none;
+    border-color: $main-color;
+  }
 }
 .App-link {
   color: #61dafb;

@@ -56,19 +56,17 @@ const TableDetail = (props) => {
       });
   };
   return (
-    <div className="col-10">
+    <div className="col-12">
       <Form action="post" onSubmit={handleSubmit} className="m-4">
-        <Form.Group as={Row} controlId="formHorizontalEmail" className="m-2 d-flex justify-start" />
-        <Form.Group className="mx-auto col-10 ">
-          <Form.Group as={Row} md="8" controlId="formHorizontalEmail" />
-          <Form.Group as={Row} controlId="formHorizontalPassword" />
+        <Form.Group className="mx-auto col-12 ">
           <Form.Group as={Row} controlId="formHorizontalPassword">
-            <Form.Label column sm={4}>
-              Consulta realizada
+            <Form.Label column sm={12}>
+              Añadir consulta
             </Form.Label>
-            <Col sm={6}>
+            <Col sm={12}>
               <Form.Control
                 as="textarea"
+                className="color-input"
                 rows={3}
                 onChange={handleChange}
                 type="text"
@@ -82,7 +80,7 @@ const TableDetail = (props) => {
         <Form.Group as={Row} controlId="formHorizontalEmail" className="mx-auto col-10 ">
           <Form.Label column sm={4} />
           <Col>
-            <Form.File id="exampleFormControlFile1" name="doc1" onChange={onFileChange} />
+            <Form.File id="exampleFormControlFile1" name="doc1" multiple="multiple" onChange={onFileChange} />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center mx-auto col-10  ">
