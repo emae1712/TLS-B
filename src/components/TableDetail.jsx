@@ -35,6 +35,7 @@ const TableDetail = (props) => {
     db.collection('queries').doc(querieId).collection('answer').add({
       user: currentUser.uid,
       time: today,
+      timeRequest: '2h',
       status: 'pendiente',
       ...values,
     })
