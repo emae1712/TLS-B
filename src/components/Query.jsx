@@ -37,7 +37,10 @@ const Query = () => {
     event.preventDefault();
     db.collection('queries').add({
       user: currentUser.uid,
-      time: today,
+      time: new Date(),
+      fecha: today,
+      timeRequest: '3h',
+      userName: 'José María Mendez',
       adviser: 'Regina Díaz',
       status: 'pendiente',
       ...values,
