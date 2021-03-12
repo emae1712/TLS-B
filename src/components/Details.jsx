@@ -45,7 +45,7 @@ const Detail = () => {
             <div>
               <p>
                 Fecha:
-                {client.time}
+                {client.fecha}
               </p>
               <p>
                 Tema:
@@ -82,7 +82,7 @@ const Detail = () => {
                 <div className="name-consult">
                   <p>Maria Fernanda Cevedo</p>
                   <p>
-                    {client.time}
+                    {client.fecha}
                   </p>
                 </div>
                 <p className="consult-text">

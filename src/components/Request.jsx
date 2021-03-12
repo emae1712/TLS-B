@@ -1,3 +1,4 @@
+/* eslint-disable newline-per-chained-call */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
@@ -10,7 +11,7 @@ const Answer = (props) => {
   const { querieId } = props;
   const [answer, setAnswer] = useState([]);
   useEffect(() => {
-    db.collection('queries').doc(querieId).collection('answer').onSnapshot((querySnapshot) => {
+    db.collection('queries').doc(querieId).collection('answer').orderBy('time', 'asc').onSnapshot((querySnapshot) => {
       const comment = [];
       querySnapshot.forEach((doc) => {
         comment.push({ id: doc.id, ...doc.data() });
@@ -29,7 +30,7 @@ const Answer = (props) => {
                 <div className="name-consult">
                   <p>Maria Fernanda Cevedo</p>
                   <p>
-                    {answer.time}
+                    {childQuery.fecha}
                   </p>
                 </div>
                 <p className="consult-text">
@@ -38,8 +39,8 @@ const Answer = (props) => {
               </div>
             </div>
           </div>
-          {childQuery.imgs.length > 0
-            ? (
+          { childQuery.imgs && childQuery.imgs.length === 0 ? ''
+            : (
               <div className="attachment">
                 <h2>Archivos adjuntos</h2>
 
@@ -70,7 +71,7 @@ const Answer = (props) => {
                 </table>
 
               </div>
-            ) : ''}
+            )}
         </div>
       ))}
     </>

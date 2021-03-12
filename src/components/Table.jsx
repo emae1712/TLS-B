@@ -56,7 +56,7 @@ const RegisterTable = () => {
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
-                    {querie.time}
+                    {querie.fecha}
                   </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>

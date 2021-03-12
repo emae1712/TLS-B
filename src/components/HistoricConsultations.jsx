@@ -55,16 +55,12 @@ const HistoricConsultations = () => {
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
-<<<<<<< HEAD
-                    {querie.time}
-=======
-                    {querie.time }
->>>>>>> dda06d92dc10a9793973dbf73aba7c194094fdc2
+                    {querie.fecha }
                   </td>
                   <td>{querie.sector}</td>
                   <td>{querie.adviser}</td>
                   <td>
-                    {querie.time}
+                    {querie.fecha}
                   </td>
                   <td>
                     <Link to={
