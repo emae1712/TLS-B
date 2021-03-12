@@ -69,10 +69,6 @@ const Detail = () => {
   };
   return (
     <>
-      <ReactToPrint
-        trigger={() => <button type="button">Print this out!</button>}
-        content={() => componentRef.current}
-      />
       <div ref={componentRef}>
         <Header />
         <section className="detail__container">
@@ -145,26 +141,11 @@ const Detail = () => {
               : (
                 <div className="attachment">
                   <h2>Archivos adjuntos</h2>
-                <table className="table">
-                  <thead>
-                    <tr className="border-table">
-                      <th scope="col">Nombre del archivo</th>
-                      <th scope="col">Archivo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    { client.imgs?.map((img, i) => (
-                      <tr index={i}>
-                        <td>
-                          Archivo
-                          {i + 1}
-                        </td>
-                        <td>
-                          {' '}
-                          <BsFileEarmarkArrowDown fontSize="1.5rem" />
-                          {' '}
-                          <a rel="noopener noreferrer" href={img} target="_blank" style={{ color: 'rgba(208, 74, 2, 1)' }}>Ver</a>
-                        </td>
+                  <table className="table">
+                    <thead>
+                      <tr className="border-table">
+                        <th scope="col">Nombre del archivo</th>
+                        <th scope="col">Archivo</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -178,7 +159,7 @@ const Detail = () => {
                             {' '}
                             <BsFileEarmarkArrowDown fontSize="1.5rem" />
                             {' '}
-                            <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
+                            <a rel="noopener noreferrer" href={img} target="_blank" style={{ color: 'rgba(208, 74, 2, 1)' }}>Ver</a>
                           </td>
                         </tr>
                       ))}
