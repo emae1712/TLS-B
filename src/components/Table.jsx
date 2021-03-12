@@ -37,6 +37,7 @@ const RegisterTable = () => {
         || el.sector.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
         || el.adviser.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
         || el.fecha.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.closeQuery.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
     ));
     setFilterData(arrQueries);
   };
@@ -47,7 +48,7 @@ const RegisterTable = () => {
       <div className="current__container">
         <div className="current-header">
           <h2>Consultas vigentes</h2>
-          <input type="search" name="buscar" placeholder="Buscar" onChange={handleChange} />
+          <input type="search" name="buscar" placeholder="buscar" onChange={handleChange} />
         </div>
         <Table responsive>
           <thead>

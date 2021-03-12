@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
@@ -11,8 +12,8 @@ import '../styles/App.scss';
 import { db } from '../firebase/fb-configuration';
 
 const HistoricConsultations = () => {
-  const [dataQueries, setDataQueries] = useState([]);
-  const [filterData, setFilterData] = useState([]);
+  const [dataCollection, setDataCollection] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   useEffect(() => {
     db.collection('queries').where('status', '==', 'Resuelta').orderBy('time', 'desc').onSnapshot((doc) => {
       const array = [];
@@ -22,15 +23,21 @@ const HistoricConsultations = () => {
           ...el.data(),
         });
       });
-      setDataQueries(array);
-      setFilterData(array);
+      setDataCollection(array);
+      setFilteredData(array);
     });
   }, []);
-
   const handleChange = (event) => {
     const { value } = event.target;
-    const arrQueries = dataQueries.filter((el) => (el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false));
-    setFilterData(arrQueries);
+    const arrQueries = dataCollection.filter((el) => (
+      el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.status.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.sector.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.adviser.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.fecha.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.closeQuery.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+    ));
+    setFilteredData(arrQueries);
   };
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Fecha de cierre', 'Detalle'];
   return (
@@ -52,7 +59,7 @@ const HistoricConsultations = () => {
           </thead>
           <tbody>
             {
-              filterData.map((querie, index) => (
+              filteredData.map((querie, index) => (
                 <tr key={index}>
                   <td>{index}</td>
                   <td>
