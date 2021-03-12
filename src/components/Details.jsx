@@ -67,10 +67,6 @@ const Detail = () => {
             </div>
           </div>
           <div className="detail-state">
-            {/* {client.status === 'pendiente'
-              ? <a rel="noopener noreferrer" target="_blank" href="https://drive.google.com/file/d/1IlHjeDOkk2GD5U2Cu_KYADcKFmOJCos6/view?usp=sharing">Descargar consulta</a>
-              : <a rel="noopener noreferrer" target="_blank" href="https://drive.google.com/file/d/171i1wxedrW9O_aq4f7NBAb-jJVwTr29e/view?usp=sharing">Descargar consulta</a>}
-            {client.status === 'Resuelta' && <a rel="noopener noreferrer" target="_blank" href="/#">Descargar consulta</a>} */}
             {prueba()}
             <table>
               <tr>
@@ -143,6 +139,7 @@ const Detail = () => {
         <div className="add-consult">
           <TableDetail querieId={id} />
         </div>
+        <button type="button">Finalizar consulta</button>
       </section>
     </>
   );

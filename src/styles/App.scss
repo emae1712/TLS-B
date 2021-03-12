@@ -193,6 +193,19 @@ align-items: center;
     margin-left: 2rem;
     font-size: 1.2rem;
 }
+.btn-sent{
+  margin: 5px 45%;
+    background-color: #333333;
+    border-radius: 4px;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffff;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+}
 .App-link {
   color: #61dafb;
 }
