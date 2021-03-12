@@ -157,8 +157,11 @@ const Detail = () => {
         <div className="add-consult">
           <TableDetail querieId={id} arrData={client} />
         </div>
-        {client.status === 'Resuelta' ? '' : <button type="button" onClick={clickToUpdate}>Finalizar consulta</button>}
-        {/* <button type="button" onClick={clickToUpdate}>Finalizar consulta</button> */}
+        <section className="box_btn">
+          {client.status === 'Resuelta' ? '' : <button type="button" className=" btn-detail" onClick={clickToUpdate}>Finalizar consulta</button>}
+          {/* <button type="button" onClick={clickToUpdate}>Finalizar consulta</button> */}
+        </section>
+
       </section>
     </>
   );
