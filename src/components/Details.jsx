@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useEffect, useState, useContext } from 'react';
+import moment from 'moment';
 import {
   Link, useParams,
 } from 'react-router-dom';
@@ -33,11 +34,25 @@ const Detail = () => {
       default: return <h1> </h1>;
     }
   };
-
+  const today = moment().format('DD MM YYYY hh:mm:ss');
   useEffect(() => {
     db.collection('queries').doc(id).get()
       .then((doc) => setClient(doc.data()));
   }, [id]);
+  const clickToUpdate = () => {
+    if (client.status === 'pendiente') {
+      db.collection('queries').doc(id).update({
+        status: 'Resuelta',
+        closeQuery: today,
+      });
+    }
+    if (client.status === 'Atendida') {
+      db.collection('queries').doc(id).update({
+        status: 'Resuelta',
+        closeQuery: today,
+      });
+    }
+  };
   return (
     <>
       <Header />
@@ -68,17 +83,19 @@ const Detail = () => {
           </div>
           <div className="detail-state">
             {prueba()}
-            <table>
+            <table className="table-box">
               <tr>
                 <th>
-                  {' '}
                   <AiOutlineClockCircle />
-                  {' '}
                 </th>
-                <th className={client.status === 'Atendida' ? 'atendida' : 'pendiente'}>{ client.status }</th>
+                <th>5</th>
               </tr>
+              <tr><th className={client.status === 'Atendida' ? 'atendida' : 'pendiente'}>{ client.status }</th></tr>
               <tr>
                 <td>Total</td>
+              </tr>
+              <tr>
+                <td />
                 <td>Estado</td>
               </tr>
             </table>
@@ -95,6 +112,7 @@ const Detail = () => {
                     {client.fecha}
                   </p>
                 </div>
+
                 <p className="consult-text">
                   {client.query}
                 </p>
@@ -137,9 +155,13 @@ const Detail = () => {
         </div>
         <Answer querieId={id} />
         <div className="add-consult">
-          <TableDetail querieId={id} />
+          <TableDetail querieId={id} arrData={client} />
         </div>
-        <button type="button">Finalizar consulta</button>
+        <section className="box_btn">
+          {client.status === 'Resuelta' ? '' : <button type="button" className=" btn-detail" onClick={clickToUpdate}>Finalizar consulta</button>}
+          {/* <button type="button" onClick={clickToUpdate}>Finalizar consulta</button> */}
+        </section>
+
       </section>
     </>
   );

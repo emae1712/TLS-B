@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -29,13 +30,15 @@ const TableDetail = (props) => {
       setFiles((prevState) => [...prevState, newFile]);
     }
   };
+
   const today = moment().format('DD MM YYYY hh:mm:ss');
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').doc(querieId).collection('answer').add({
       user: currentUser.uid,
-      time: today,
-      timeRequest: '2h',
+      time: new Date(),
+      fecha: today,
+      timeRequest: '',
       status: 'pendiente',
       ...values,
     })
@@ -55,6 +58,8 @@ const TableDetail = (props) => {
         setFiles([]);
       });
   };
+
+  localStorage.setItem('data', JSON.stringify(files));
   return (
     <div className="col-10">
       <Form action="post" onSubmit={handleSubmit} className="m-4">

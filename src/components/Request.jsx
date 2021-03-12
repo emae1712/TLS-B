@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
+import { AiOutlineClockCircle } from 'react-icons/ai';
 import { db } from '../firebase/fb-configuration';
 import Avatar2 from '../img/avatar_2.jpg';
 import '../styles/App.scss';
@@ -27,12 +28,31 @@ const Answer = (props) => {
             <div className="consult-detail">
               <img className="avatar" src={Avatar2} alt="avatar" />
               <div className="user-consult">
-                <div className="name-consult">
-                  <p>Maria Fernanda Cevedo</p>
+                <div className="name-consult box">
+                  <div>
+                    <p>Fernando Cevedo</p>
+                    <p>
+                      Fecha
+                      {' '}
+                      {childQuery.fecha}
+                    </p>
+                  </div>
+                  {
+                    childQuery.timeRequest === '' ? ''
+                      : (
+                        <div>
+                          <AiOutlineClockCircle />
+                          <p>{childQuery.timeRequest}</p>
+                        </div>
+                      )
+                  }
+                </div>
+
+                {/* <p>Fernanda Cevedo</p>
                   <p>
                     {childQuery.fecha}
                   </p>
-                </div>
+                </div> */}
                 <p className="consult-text">
                   {childQuery.answer}
                 </p>
