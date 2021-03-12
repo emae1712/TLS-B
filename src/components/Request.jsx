@@ -82,7 +82,7 @@ const Answer = (props) => {
                           {' '}
                           <BsFileEarmarkArrowDown fontSize="1.5rem" />
                           {' '}
-                          <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
+                          <a rel="noopener noreferrer" href={img} target="_blank" style={{ color: 'rgba(208, 74, 2, 1)' }}>Ver</a>
                         </td>
                       </tr>
                     ))}

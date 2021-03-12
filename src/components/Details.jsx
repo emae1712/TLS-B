@@ -12,6 +12,7 @@ import {
   Col, Form, Row,
 } from 'react-bootstrap';
 // import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 import { AiOutlineArrowLeft, AiOutlineClockCircle } from 'react-icons/ai';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { AuthContext } from '../Context/Auth';
@@ -56,6 +57,15 @@ const Detail = () => {
         closeQuery: today,
       });
     }
+    Swal.fire({
+      title: '<strong>Acaba de cerrar esta consulta!</strong>',
+      icon: 'success',
+      iconColor: '#D04A02',
+      html:
+      'Puede visualizar el detalle en <b> Consultas Históricas </b>',
+      showCloseButton: true,
+      confirmButtonColor: '#D04A02',
+    });
   };
   return (
     <>
@@ -135,12 +145,26 @@ const Detail = () => {
               : (
                 <div className="attachment">
                   <h2>Archivos adjuntos</h2>
-
-                  <table className="table">
-                    <thead>
-                      <tr className="border-table">
-                        <th scope="col">Nombre del archivo</th>
-                        <th scope="col">Archivo</th>
+                <table className="table">
+                  <thead>
+                    <tr className="border-table">
+                      <th scope="col">Nombre del archivo</th>
+                      <th scope="col">Archivo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { client.imgs?.map((img, i) => (
+                      <tr index={i}>
+                        <td>
+                          Archivo
+                          {i + 1}
+                        </td>
+                        <td>
+                          {' '}
+                          <BsFileEarmarkArrowDown fontSize="1.5rem" />
+                          {' '}
+                          <a rel="noopener noreferrer" href={img} target="_blank" style={{ color: 'rgba(208, 74, 2, 1)' }}>Ver</a>
+                        </td>
                       </tr>
                     </thead>
                     <tbody>

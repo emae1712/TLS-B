@@ -80,40 +80,47 @@ const Query = () => {
                 Registrar consulta
               </Form.Label>
             </Form.Group>
-            <Form.Group className="mx-auto col-10 ">
-              <Form.Group as={Row} md="8" controlId="formHorizontalEmail">
-                <Form.Label column sm={4}>
-                  Fecha de Consulta
-                </Form.Label>
-                <Col sm={6}>
+
+            <Form className="mx-auto col-10">
+              <Row>
+                <Col sm={8}>
+                  <Form.Label className="mx-auto margin-tema">
+                    Tema
+                  </Form.Label>
+                  <Form.Label column sm={5}>
+                    <Form.Control
+                      rows={3}
+                      onChange={handleChange}
+                      type="text"
+                      name="sector"
+                      className="color-input"
+                      value={values.sector}
+                    />
+                  </Form.Label>
+                </Col>
+                <Col sm={2}>
+                  <Form.Label sm={5}>
+                    Fecha
+                  </Form.Label>
                   <Form.Label column sm={2}>
                     <Moment format="DD/MM/YYYY">
                       {new Date()}
                     </Moment>
                   </Form.Label>
                 </Col>
-              </Form.Group>
+
+              </Row>
+            </Form>
+
+            <Form.Group className="mx-auto col-10 ">
               <Form.Group as={Row} controlId="formHorizontalPassword">
-                <Form.Label column sm={4}>
-                  Tema
+                <Form.Label column sm={2}>
+                  Consulta
                 </Form.Label>
-                <Col sm={6}>
-                  <Form.Control
-                    rows={3}
-                    onChange={handleChange}
-                    type="text"
-                    name="sector"
-                    value={values.sector}
-                  />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} controlId="formHorizontalPassword">
-                <Form.Label column sm={4}>
-                  Consulta realizada
-                </Form.Label>
-                <Col sm={6}>
+                <Col sm={8}>
                   <Form.Control
                     as="textarea"
+                    className="color-input"
                     rows={3}
                     onChange={handleChange}
                     type="text"
@@ -133,7 +140,7 @@ const Query = () => {
             <Form.Group as={Row} controlId="formHorizontalEmail" className="mx-auto col-10 ">
 
               <Col>
-                <Form.File id="exampleFormControlFile1" name="doc1" onChange={onFileChange} />
+                <Form.File id="exampleFormControlFile1" multiple="multiple" name="doc1" onChange={onFileChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="formHorizontalCheck" className="d-flex align-items-center mx-auto col-10  ">
