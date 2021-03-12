@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable newline-per-chained-call */
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
@@ -30,7 +31,13 @@ const RegisterTable = () => {
 
   const handleChange = (event) => {
     const { value } = event.target;
-    const arrQueries = dataQueries.filter((el) => (el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false));
+    const arrQueries = dataQueries.filter((el) => (
+      el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.status.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.sector.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.adviser.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+        || el.fecha.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false
+    ));
     setFilterData(arrQueries);
   };
   const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado', 'Detalle'];

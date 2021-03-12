@@ -39,7 +39,6 @@ const Query = () => {
       user: currentUser.uid,
       time: new Date(),
       fecha: today,
-      timeRequest: '3h',
       userName: 'José María Mendez',
       adviser: 'Regina Díaz',
       status: 'pendiente',
