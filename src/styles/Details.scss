@@ -113,3 +113,7 @@ a {
 .name-consult{
     font-size: 14px;
 }
+.box{
+    display: grid;
+    grid-template-columns: 90% 10%;
+}

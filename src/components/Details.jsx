@@ -83,18 +83,25 @@ const Detail = () => {
             <div className="consult-detail">
               <img className="avatar" src={Avatar} alt="avatar" />
               <div className="user-consult">
-                <div className="name-consult">
-                  <p>{client.userName}</p>
-                  <p>
-                    Fecha
-                    {' '}
-                    {client.fecha}
-                  </p>
-                  <p>
-                    Tema:
-                    {client.sector}
-                  </p>
+                <div className="name-consult box">
+                  <div>
+                    <p>{client.userName}</p>
+                    <p>
+                      Fecha
+                      {' '}
+                      {client.fecha}
+                    </p>
+                    <p>
+                      Tema:
+                      {client.sector}
+                    </p>
+                  </div>
+                  <div>
+                    <AiOutlineClockCircle />
+                    <p>{client.timeRequest}</p>
+                  </div>
                 </div>
+
                 <p className="consult-text">
                   {client.query}
                 </p>

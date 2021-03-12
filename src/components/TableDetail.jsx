@@ -31,12 +31,14 @@ const TableDetail = (props) => {
       setFiles((prevState) => [...prevState, newFile]);
     }
   };
+
   const today = moment().format('DD MM YYYY hh:mm:ss');
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').doc(querieId).collection('answer').add({
       user: currentUser.uid,
-      time: today,
+      time: new Date(),
+      fecha: today,
       timeRequest: '2h',
       status: 'pendiente',
       ...values,
