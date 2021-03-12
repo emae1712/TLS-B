@@ -91,36 +91,39 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div className="attachment">
-            <h2>Archivos adjuntos</h2>
+          { client.imgs && client.imgs.length === 0 ? ''
+            : (
+              <div className="attachment">
+                <h2>Archivos adjuntos</h2>
 
-            <table className="table">
-              <thead>
-                <tr className="border-table">
-                  <th scope="col">Nombre del archivo</th>
-                  <th scope="col">Archivo</th>
-                </tr>
-              </thead>
-              <tbody>
-                { client.imgs && client.imgs.map((img, i) => (
-                  <tr index={i}>
-                    <td>
-                      Archivo
-                      {i + 1}
-                    </td>
-                    <td>
-                      {' '}
-                      <BsFileEarmarkArrowDown fontSize="1.5rem" />
-                      {' '}
-                      <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+                <table className="table">
+                  <thead>
+                    <tr className="border-table">
+                      <th scope="col">Nombre del archivo</th>
+                      <th scope="col">Archivo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { client.imgs && client.imgs.map((img, i) => (
+                      <tr index={i}>
+                        <td>
+                          Archivo
+                          {i + 1}
+                        </td>
+                        <td>
+                          {' '}
+                          <BsFileEarmarkArrowDown fontSize="1.5rem" />
+                          {' '}
+                          <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
 
-            </table>
+                </table>
 
-          </div>
+              </div>
+            )}
         </div>
         <Answer querieId={id} />
         <div className="add-consult">
