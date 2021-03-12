@@ -37,10 +37,15 @@ const Answer = (props) => {
                       {childQuery.fecha}
                     </p>
                   </div>
-                  <div>
-                    <AiOutlineClockCircle />
-                    <p>{childQuery.timeRequest}</p>
-                  </div>
+                  {
+                    childQuery.timeRequest === '' ? ''
+                      : (
+                        <div>
+                          <AiOutlineClockCircle />
+                          <p>{childQuery.timeRequest}</p>
+                        </div>
+                      )
+                  }
                 </div>
 
                 {/* <p>Fernanda Cevedo</p>

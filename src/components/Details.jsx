@@ -96,10 +96,10 @@ const Detail = () => {
                       {client.sector}
                     </p>
                   </div>
-                  <div>
+                  {/* <div>
                     <AiOutlineClockCircle />
                     <p>{client.timeRequest}</p>
-                  </div>
+                  </div> */}
                 </div>
 
                 <p className="consult-text">

@@ -39,7 +39,7 @@ const TableDetail = (props) => {
       user: currentUser.uid,
       time: new Date(),
       fecha: today,
-      timeRequest: '2h',
+      timeRequest: '',
       status: 'pendiente',
       ...values,
     })
