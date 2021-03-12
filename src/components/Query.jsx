@@ -84,7 +84,7 @@ const Query = () => {
             <Form className="mx-auto col-10">
               <Row>
                 <Col sm={8}>
-                  <Form.Label className="mx-auto margin-tema">
+                  <Form.Label column sm={2} className=" mx-auto margin-tema text-start">
                     Tema
                   </Form.Label>
                   <Form.Label column sm={5}>
