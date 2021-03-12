@@ -1,15 +1,17 @@
 /* eslint-disable newline-per-chained-call */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { db } from '../firebase/fb-configuration';
-import Avatar2 from '../img/avatar_2.jpg';
+import { AuthContext } from '../Context/Auth';
 import '../styles/App.scss';
 import '../styles/Details.scss';
 
 const Answer = (props) => {
-  const { querieId } = props;
+  const { currentUser } = useContext(AuthContext);
+  const { querieId, client } = props;
+  console.log(currentUser, client.user);
   const [answer, setAnswer] = useState([]);
   useEffect(() => {
     db.collection('queries').doc(querieId).collection('answer').orderBy('time', 'asc').onSnapshot((querySnapshot) => {
@@ -26,18 +28,28 @@ const Answer = (props) => {
         <div className="consult-card">
           <div className="consult-container">
             <div className="consult-detail">
-              <img className="avatar" src={Avatar2} alt="avatar" />
+              {currentUser.uid === client.user ? <img className="avatar" src="https://user-images.githubusercontent.com/68167686/110983245-83a4fd00-8337-11eb-82a7-f3ec14ad86ae.jpeg" alt="Adriana" /> : <img className="avatar" src="https://user-images.githubusercontent.com/68167686/110983191-72f48700-8337-11eb-97b7-5940dc51e24b.png" alt="David" />}
+
               <div className="user-consult">
                 <div className="name-consult box">
                   <div>
-                    <p>Fernando Cevedo</p>
+                    {currentUser.uid === client.user ? <p>Adriana Tapia</p> : <p>David Llanos</p>}
                     <p>
                       Fecha
                       {' '}
                       {childQuery.fecha}
                     </p>
                   </div>
-                  {
+                  {currentUser.uid === client.user ? <p> </p> : (
+                    <div>
+                      <AiOutlineClockCircle />
+                      <p>
+                        2h
+                        {childQuery.timeRequest}
+                      </p>
+                    </div>
+                  )}
+                  {/* {
                     childQuery.timeRequest === '' ? ''
                       : (
                         <div>
@@ -45,7 +57,7 @@ const Answer = (props) => {
                           <p>{childQuery.timeRequest}</p>
                         </div>
                       )
-                  }
+                  } */}
                 </div>
 
                 {/* <p>Fernanda Cevedo</p>

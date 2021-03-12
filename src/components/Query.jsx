@@ -40,7 +40,7 @@ const Query = () => {
       user: currentUser.uid,
       time: new Date(),
       fecha: today,
-      userName: 'José María Mendez',
+      userName: 'Adriana Tapia',
       adviser: 'Regina Díaz',
       status: 'pendiente',
       ...values,
