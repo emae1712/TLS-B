@@ -97,7 +97,7 @@ align-items: center;
     align-items: center;
     margin-right: 1rem;
     svg{
-    color: #ffff;
+    color:#D04A02;
     font-size: 1.5rem;
     }
     
@@ -127,6 +127,7 @@ align-items: center;
     height: 55px;
     color: #acacac;
     font-size: 20px;
+    margin:5px auto;
   }
   input{
     background: none;
@@ -136,6 +137,7 @@ align-items: center;
     font-size: 1.1rem;
     color: #333;
     border-radius: 5px;
+    padding: 17px 0px;
   }
 }
 .recuperar{
@@ -149,7 +151,7 @@ align-items: center;
     outline: none;
     border-radius: 49px;
     cursor: pointer;
-    margin: 20px;
+    margin:  5% 20%;;
 }
 
 .App {
@@ -207,7 +209,7 @@ align-items: center;
     width: 150px;
 }
 .margin-tema{
-  margin-right: 55px !important;
+  margin-right: 10%  !important;
 }
 .color-input{
   background-color: rgba(241, 241, 241, 1);
@@ -243,3 +245,7 @@ align-items: center;
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 } 
+.box-col{
+  margin: 0;
+  padding:0;
+}

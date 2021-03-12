@@ -36,6 +36,7 @@ const Query = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     db.collection('queries').add({
+      closeQuery: '',
       user: currentUser.uid,
       time: new Date(),
       fecha: today,
@@ -83,8 +84,8 @@ const Query = () => {
 
             <Form className="mx-auto col-10">
               <Row>
-                <Col sm={8}>
-                  <Form.Label className="mx-auto margin-tema">
+                <Col sm={8} className="box-col">
+                  <Form.Label column sm={2} className=" mx-auto margin-tema text-start">
                     Tema
                   </Form.Label>
                   <Form.Label column sm={5}>
