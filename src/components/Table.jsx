@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {
   Table,
 } from 'react-bootstrap';
+import { BsFillEyeFill } from 'react-icons/bs';
 import Header from './Header';
 import '../styles/App.scss';
 import { db } from '../firebase/fb-configuration';
@@ -32,7 +33,7 @@ const RegisterTable = () => {
     const arrQueries = dataQueries.filter((el) => (el.query.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? el : false));
     setFilterData(arrQueries);
   };
-  const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado'];
+  const titleTable = ['Fecha', 'Tema', 'Gerente a Cargo', 'Estado', 'Detalle'];
   return (
     <>
       <Header />
@@ -62,11 +63,13 @@ const RegisterTable = () => {
                   <td>{querie.adviser}</td>
                   <td className={querie.status === 'Atendida' ? 'atendida' : 'pendiente'}>{querie.status}</td>
                   <td>
-                    <Link to={
+                    <Link
+                      className="view"
+                      to={
                      `/detail/${querie.id}`
 }
                     >
-                      Detalle
+                      <BsFillEyeFill />
                     </Link>
                   </td>
                 </tr>
