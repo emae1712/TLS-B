@@ -10,8 +10,7 @@ import { AuthContext } from '../Context/Auth';
 import '../styles/App.scss';
 
 const TableDetail = (props) => {
-  const { querieId, arrData } = props;
-  console.log(arrData);
+  const { querieId } = props;
   const initialValue = {
     answer: '',
   };
@@ -104,5 +103,4 @@ const TableDetail = (props) => {
 export default TableDetail;
 TableDetail.propTypes = {
   querieId: PropTypes.string.isRequired,
-  arrData: PropTypes.array.isRequired,
 };

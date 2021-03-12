@@ -38,8 +38,6 @@ const Detail = () => {
     db.collection('queries').doc(id).get()
       .then((doc) => setClient(doc.data()));
   }, [id]);
-  const arr = localStorage.getItem('data');
-  console.log(arr);
   return (
     <>
       <Header />
