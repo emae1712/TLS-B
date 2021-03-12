@@ -180,13 +180,18 @@ align-items: center;
   color: white;
 }
 .atendida{
-  color:#308F21 !important;
+  color:rgba(226, 51, 29, 1) !important;
   font-weight: bold !important;
 }
 .pendiente{
   color: #9A9A9A !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
+}
+.view{
+  color: rgba(51, 51, 51, 1);
+    margin-left: 2rem;
+    font-size: 1.2rem;
 }
 .App-link {
   color: #61dafb;
