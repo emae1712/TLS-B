@@ -28,6 +28,8 @@ const Detail = () => {
     db.collection('queries').doc(id).get()
       .then((doc) => setClient(doc.data()));
   }, [id]);
+  const arr = localStorage.getItem('data');
+  console.log(arr);
   return (
     <>
       <Header />
@@ -58,17 +60,19 @@ const Detail = () => {
           </div>
           <div className="detail-state">
             <a href="#/">Descargar consulta</a>
-            <table>
+            <table className="table_container">
               <tr>
                 <th>
-                  {' '}
                   <AiOutlineClockCircle />
-                  {' '}
                 </th>
-                <th className={client.status === 'Atendida' ? 'atendida' : 'pendiente'}>{ client.status }</th>
+                <th>5</th>
               </tr>
+              <tr><th className={client.status === 'Atendida' ? 'atendida' : 'pendiente'}>{ client.status }</th></tr>
               <tr>
                 <td>Total</td>
+              </tr>
+              <tr>
+                <td />
                 <td>Estado</td>
               </tr>
             </table>
@@ -80,9 +84,15 @@ const Detail = () => {
               <img className="avatar" src={Avatar} alt="avatar" />
               <div className="user-consult">
                 <div className="name-consult">
-                  <p>Maria Fernanda Cevedo</p>
+                  <p>{client.userName}</p>
                   <p>
+                    Fecha
+                    {' '}
                     {client.fecha}
+                  </p>
+                  <p>
+                    Tema:
+                    {client.sector}
                   </p>
                 </div>
                 <p className="consult-text">
@@ -127,7 +137,7 @@ const Detail = () => {
         </div>
         <Answer querieId={id} />
         <div className="add-consult">
-          <TableDetail querieId={id} />
+          <TableDetail querieId={id} arrData={client} />
         </div>
       </section>
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -9,7 +10,8 @@ import { AuthContext } from '../Context/Auth';
 import '../styles/App.scss';
 
 const TableDetail = (props) => {
-  const { querieId } = props;
+  const { querieId, arrData } = props;
+  console.log(arrData);
   const initialValue = {
     answer: '',
   };
@@ -55,6 +57,8 @@ const TableDetail = (props) => {
         setFiles([]);
       });
   };
+
+  localStorage.setItem('data', JSON.stringify(files));
   return (
     <div className="col-10">
       <Form action="post" onSubmit={handleSubmit} className="m-4">
@@ -98,4 +102,5 @@ const TableDetail = (props) => {
 export default TableDetail;
 TableDetail.propTypes = {
   querieId: PropTypes.string.isRequired,
+  arrData: PropTypes.array.isRequired,
 };

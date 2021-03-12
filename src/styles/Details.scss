@@ -22,18 +22,18 @@ a {
         }
         }
         .detail-state{
-            display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    table{
-        margin:0 auto;
-        text-align: center;
-        th{
-            font-size: 20px;
-            color: rgba(154, 154, 154, 1);
-            font-weight: bold;
-        }
-    }
+    //         display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // table{
+    //     margin:0 auto;
+    //     text-align: center;
+    //     th{
+    //         font-size: 20px;
+    //         color: rgba(154, 154, 154, 1);
+    //         font-weight: bold;
+    //     }
+    // }
     a{
         white-space: pre;
         background-color:rgba(51, 51, 51, 1);
@@ -104,4 +104,12 @@ a {
     background-color: #ffff;
     margin-bottom: 1rem;
     padding: 2rem;
+}
+.table_container{
+    padding-top: 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.name-consult{
+    font-size: 14px;
 }
