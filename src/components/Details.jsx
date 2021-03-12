@@ -142,7 +142,7 @@ const Detail = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    { client.imgs?.map((img, i) => (
+                    { client.imgs && client.imgs.map((img, i) => (
                       <tr index={i}>
                         <td>
                           Archivo
