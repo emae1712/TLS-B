@@ -9,6 +9,7 @@ import {
   Col, Form, Row,
 } from 'react-bootstrap';
 // import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 import { AiOutlineArrowLeft, AiOutlineClockCircle } from 'react-icons/ai';
 import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { AuthContext } from '../Context/Auth';
@@ -52,6 +53,15 @@ const Detail = () => {
         closeQuery: today,
       });
     }
+    Swal.fire({
+      title: '<strong>Acaba de cerrar esta consulta!</strong>',
+      icon: 'success',
+      iconColor: '#D04A02',
+      html:
+      'Puede visualizar el detalle en <b> Consultas Históricas </b>',
+      showCloseButton: true,
+      confirmButtonColor: '#D04A02',
+    });
   };
   return (
     <>
@@ -132,7 +142,7 @@ const Detail = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    { client.imgs && client.imgs.map((img, i) => (
+                    { client.imgs?.map((img, i) => (
                       <tr index={i}>
                         <td>
                           Archivo
@@ -142,7 +152,7 @@ const Detail = () => {
                           {' '}
                           <BsFileEarmarkArrowDown fontSize="1.5rem" />
                           {' '}
-                          <a rel="noopener noreferrer" href={img} target="_blank">Ver</a>
+                          <a rel="noopener noreferrer" href={img} target="_blank" style={{ color: 'rgba(208, 74, 2, 1)' }}>Ver</a>
                         </td>
                       </tr>
                     ))}
