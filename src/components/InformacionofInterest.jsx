@@ -23,10 +23,11 @@ const InformationofInterest = () => {
       <Header />
       <div className="information__container">
         <div className="header-carousel">
-          <Slider autoplay={3000}>
+          <Slider autoplay={3000} className="slider-wrapper">
             {content.map((item, index) => (
               <div
                 key={index}
+                className="slider-content"
                 style={{ background: `url('${item.image}') no-repeat center center` }}
               >
                 <div className="center">
